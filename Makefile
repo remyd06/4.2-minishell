@@ -6,7 +6,7 @@
 #    By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 17:33:57 by rdedola           #+#    #+#              #
-#    Updated: 2024/12/05 12:50:11 by rdedola          ###   ########.fr        #
+#    Updated: 2024/12/05 14:53:28 by rdedola          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,14 @@ EXE			=	minishell
 # Files
 SRC			=	main.c \
 
+LEXER		=	source/lexer/count_token.c \
+
 SRC_UTILS	=	source/utils/main_interface_print.c \
+				source/utils/ft_ismeta.c \
+				source/utils/ft_isprint.c \
+				source/utils/ft_isspace.c \
 				
-SOURCES		=	${SRC} ${SRC_UTILS}
+SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}
 
 # Variables

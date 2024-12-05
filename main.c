@@ -6,7 +6,7 @@
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:32:56 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/05 13:43:51 by rdedola          ###   ########.fr       */
+/*   Updated: 2024/12/05 14:59:59 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	main(void)
 		ms.input = buffer;
 		if (buffer)
 			add_history(buffer);
-		printf("%s\n", ms.input);
+		printf("%d\n", count_token(ms.input));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 09:28:04 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/05 13:13:36 by rdedola          ###   ########.fr       */
+/*   Updated: 2024/12/05 15:39:26 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,21 @@ int	count_token(char *str)
 			countword++;
 			i += 2;
 		}
-		if (ft_ismeta(str[i]))
+		else if (ft_ismeta(str[i]) && !ft_isspace(str[i++]))
 			countword++;
-		if (ft_isspace)
+		if (ft_isspace(str[i]))
+		{
 			countword++;
-		while (ft_isspace)
-			i++;
-		if (ft_isprint && !ft_ismeta && (str[i] !=  '>' || str[i] != '<'))
+			while (ft_isspace(str[i]))
+				i++;
+		}
+		else if (ft_isprint(str[i]) && !ft_ismeta(str[i]) && !ft_isspace(str[i]))
+		{
 			countword++;
-		while (ft_isprint && !ft_ismeta && (str[i] !=  '>' || str[i] != '<'))
-			i++;
+			while (ft_isprint(str[i]) && !ft_ismeta(str[i]) && !ft_isspace(str[i]))
+				i++;
+		}
 	}
-	return (i);
-	
+	printf("%d\n", countword);
+	return (countword);
 }

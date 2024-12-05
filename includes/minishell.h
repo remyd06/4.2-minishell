@@ -6,7 +6,7 @@
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:33:10 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/05 13:03:07 by rdedola          ###   ########.fr       */
+/*   Updated: 2024/12/05 13:57:41 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct	s_ms
 //The MINISHELL menu printer.
 void	main_interface_print(void);
 int		main(void);
+int		count_token(char *str);
 t_bool	ft_isspace(char c);
 t_bool	ft_ismeta(char c);
 t_bool	ft_isprint(int c);
