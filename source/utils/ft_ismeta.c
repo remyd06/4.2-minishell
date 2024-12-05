@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_ismeta.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 17:32:56 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/05 13:43:51 by rdedola          ###   ########.fr       */
+/*   Created: 2024/12/05 12:48:58 by rdedola           #+#    #+#             */
+/*   Updated: 2024/12/05 12:53:56 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_shell(void)
+t_bool	ft_ismeta(char c)
 {
-	main_interface_print();
-}
-
-int	main(void)
-{
-	t_ms	ms;
-	char	*buffer;
-
-	init_shell();
-	while (1)
-	{
-		buffer = readline(YEL"MINISHELL> "ENDCL);
-			if (!buffer)
-				return (0);
-		ms.input = buffer;
-		if (buffer)
-			add_history(buffer);
-		printf("%s\n", ms.input);
-	}
+	if (c == '<' || c == '>' || c == '$' || c == '|' || c == "\'" || c == "\"")
+		return (TRUE);
+	return (FALSE);
 }

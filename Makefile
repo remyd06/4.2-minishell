@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+         #
+#    By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 17:33:57 by rdedola           #+#    #+#              #
-#    Updated: 2024/12/02 18:20:29 by rdedola          ###   ########.fr        #
+#    Updated: 2024/12/05 12:50:11 by rdedola          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,14 @@ OBJECTS		=	${SOURCES:%.c=obj/%.o}
 
 # Variables
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Iincludes -Wall -Werror -Wextra
 RM			=	rm -rf
 
 # Makefile
 all:		${EXE}
 
 ${EXE}:		${OBJECTS}
-			@${CC} ${CFLAGS} ${OBJECTS} -o ${EXE}
+			@${CC} ${CFLAGS} ${OBJECTS} -lreadline -o ${EXE}
 
 obj/%.o:	%.c
 			@mkdir -p obj/$(dir $<)

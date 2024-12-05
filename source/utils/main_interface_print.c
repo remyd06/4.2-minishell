@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main_interface_print.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:50:17 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/02 21:05:22 by rdedola          ###   ########.fr       */
+/*   Updated: 2024/12/05 12:51:01 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void	main_interface_print(void)
 {
