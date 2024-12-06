@@ -6,7 +6,7 @@
 #    By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 17:33:57 by rdedola           #+#    #+#              #
-#    Updated: 2024/12/05 14:53:28 by rdedola          ###   ########.fr        #
+#    Updated: 2024/12/06 15:22:10 by rdedola          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,14 @@ EXE			=	minishell
 SRC			=	main.c \
 
 LEXER		=	source/lexer/count_token.c \
+				source/lexer/tokenizer.c \
 
 SRC_UTILS	=	source/utils/main_interface_print.c \
+				source/utils/print_tester_value.c \
 				source/utils/ft_ismeta.c \
 				source/utils/ft_isprint.c \
 				source/utils/ft_isspace.c \
+				source/utils/ft_strncpy.c \
 				
 SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}

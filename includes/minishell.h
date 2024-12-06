@@ -6,7 +6,7 @@
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:33:10 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/05 13:57:41 by rdedola          ###   ########.fr       */
+/*   Updated: 2024/12/06 15:22:07 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@
 # include <stdbool.h>           // Booleans
 								// rl_replace_line, rl_redisplay
 
-# define RED		"\033[31m"
-# define GREEN		"\033[32m"
-# define YEL		"\001\033[33m"
+# define RED		"\033[31;1m"
+# define GREEN		"\033[32;1m"
+# define YEL		"\001\033[33;1m"
+# define PURP		"\001\033[35;1m"
 # define ENDCL		"\002\033[0m"
 
 # define MAX_OUTPUT_LENGHT = 1024
@@ -47,22 +48,30 @@ typedef enum	e_bool
 
 typedef enum	e_token
 {
-	SEPARATOR,			// Whitespace
-	COMMAND,			// Others
+	WSPACE,				// Whitespace
+	WORD,				// Others
 	SINGLE_QUOTE,		// '
 	DOUBLE_QUOTE,		// "
 	PIPE,				// |
-	INPUT_REDIRECT,		// <
-	OUTPUT_REDIRECT,	// >
+	REDIN,				// <
+	REDOUT,				// >
 	HEREDOC,			// <<
-	APPEND_REDIRECT,	// >>
+	APPEND_REDIR,		// >>
 	DOLLAR,				//$
 }	t_token;
 
+typedef struct	s_lexer
+{
+	int			nb_of_tokens;
+	int			*tokens;
+	char		**tokens_array;
+}	t_lexer;
+
 typedef struct	s_ms 
 {
-	char	*input;
-	char	**output_array;
+	t_lexer		lexer;
+	char		*input;
+	char		**output_array;
 	
 }	t_ms;
 
@@ -72,10 +81,13 @@ typedef struct	s_ms
 //The MINISHELL menu printer.
 void	main_interface_print(void);
 int		main(void);
-int		count_token(char *str);
+int		count_token(t_ms *ms);
 t_bool	ft_isspace(char c);
 t_bool	ft_ismeta(char c);
 t_bool	ft_isprint(int c);
+void	print_tester_value(t_ms *ms);
+void	tokenizer(t_ms *ms);
+char	*ft_strncpy(char *src, char *dest, int size);
 
 
 

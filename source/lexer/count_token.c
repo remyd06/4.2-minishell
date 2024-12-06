@@ -6,43 +6,40 @@
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 09:28:04 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/05 15:39:26 by rdedola          ###   ########.fr       */
+/*   Updated: 2024/12/06 10:34:33 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	count_token(char *str)
+int	count_token(t_ms *ms)
 {
-	int		countword;
 	int		i;
 
-	countword = 0;
 	i = 0;
-	while (ft_isspace(str[i]))
+	while (ft_isspace(ms->input[i]))
 		i++;
-	while (str[i])
+	while (ms->input[i])
 	{	
-		if ((str[i] ==  '>' || str[i] == '<') && str[i + 1] == str[i])
+		if ((ms->input[i] ==  '>' || ms->input[i] == '<') && ms->input[i + 1] == ms->input[i])
 		{
-			countword++;
+			ms->lexer.nb_of_tokens++;
 			i += 2;
 		}
-		else if (ft_ismeta(str[i]) && !ft_isspace(str[i++]))
-			countword++;
-		if (ft_isspace(str[i]))
+		else if (ft_ismeta(ms->input[i]) && !ft_isspace(ms->input[i++]))
+			ms->lexer.nb_of_tokens++;
+		if (ft_isspace(ms->input[i]))
 		{
-			countword++;
-			while (ft_isspace(str[i]))
+			ms->lexer.nb_of_tokens++;
+			while (ft_isspace(ms->input[i]))
 				i++;
 		}
-		else if (ft_isprint(str[i]) && !ft_ismeta(str[i]) && !ft_isspace(str[i]))
+		else if (ft_isprint(ms->input[i]) && !ft_ismeta(ms->input[i]) && !ft_isspace(ms->input[i]))
 		{
-			countword++;
-			while (ft_isprint(str[i]) && !ft_ismeta(str[i]) && !ft_isspace(str[i]))
+			ms->lexer.nb_of_tokens++;
+			while (ft_isprint(ms->input[i]) && !ft_ismeta(ms->input[i]) && !ft_isspace(ms->input[i]))
 				i++;
 		}
 	}
-	printf("%d\n", countword);
-	return (countword);
+	return (ms->lexer.nb_of_tokens);
 }
