@@ -6,7 +6,7 @@
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 09:20:09 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/09 12:29:35 by rdedola          ###   ########.fr       */
+/*   Updated: 2024/12/09 14:39:09 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	parser(t_ms *ms)
 {
 	handle_quote(ms);
-	handle_pipes(ms);
+//	handle_pipes(ms);
 }
