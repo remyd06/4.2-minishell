@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
+
 char	*ft_strncpy(char *src, char *dest, int size)
 {
 	int	i;

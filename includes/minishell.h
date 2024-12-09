@@ -75,20 +75,39 @@ typedef struct	s_ms
 	
 }	t_ms;
 
+/******************************************************************************
+ *                                 L E X E R                                  *
+******************************************************************************/
 
-/* UTILS */
+//Count the nb of tokens in the input.
+int		count_token(t_ms *ms);
+//Split and categorize each element of the input in a **array with his token.
+void	tokenizer(t_ms *ms);
 
+/******************************************************************************
+ *                                P A R S E R                                  *
+******************************************************************************/
+
+
+/******************************************************************************
+ *                                 U T I L S                                  *
+******************************************************************************/
+
+//Check if the accurate char is a meta char.
+t_bool	ft_ismeta(char c);
+//Check if the accurate char is a printable char.
+t_bool	ft_isprint(int c);
+//Check if the accurate char is a space char.
+t_bool	ft_isspace(char c);
+//Copy the *src in the *dest of x size.
+char	*ft_strncpy(char *src, char *dest, int size);
 //The MINISHELL menu printer.
 void	main_interface_print(void);
-int		main(void);
-int		count_token(t_ms *ms);
-t_bool	ft_isspace(char c);
-t_bool	ft_ismeta(char c);
-t_bool	ft_isprint(int c);
+//The temp file for test all the values.
 void	print_tester_value(t_ms *ms);
-void	tokenizer(t_ms *ms);
-char	*ft_strncpy(char *src, char *dest, int size);
 
+//Main file.
+int		main(void);
 
 
 #endif

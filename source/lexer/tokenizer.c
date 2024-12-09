@@ -50,10 +50,8 @@ void	handle_meta(t_ms *ms, int *x, int *y)
 void	handle_command(t_ms *ms, int *x, int *y)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	ms->lexer.tokens[*y] = WORD;
 	while (ft_isprint(ms->input[*x + i]) && !ft_ismeta(ms->input[*x + i]) && !ft_isspace(ms->input[*x + i]))
 		i++;
@@ -98,12 +96,12 @@ void	tokenizer(t_ms *ms)
 		else if (ms->input && ft_ismeta(ms->input[x]) &&
 			(!ft_isprint(ms->input[x]) || !ft_isspace(ms->input[x])))
 			handle_meta(ms, &x, &y);
-		if (ms->input && ft_isprint(ms->input[x]) &&
-			(!ft_ismeta(ms->input[x]) || !ft_isspace(ms->input[x])))
-			handle_command(ms, &x, &y);
-		if (ms->input && ft_isspace(ms->input[x]) &&
+		else if (ms->input && ft_isspace(ms->input[x]) &&
 			(!ft_isprint(ms->input[x]) || !ft_ismeta(ms->input[x])))
 			handle_wspace(ms, &x, &y);
+		else if (ms->input && ft_isprint(ms->input[x]) &&
+			(!ft_ismeta(ms->input[x]) || !ft_isspace(ms->input[x])))
+			handle_command(ms, &x, &y);
 	}
 	ms->lexer.tokens_array[y] = NULL;
 }

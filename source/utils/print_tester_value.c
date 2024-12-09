@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 void	print_tester_value(t_ms *ms)
 {
 	const char		*tokens[] = {
@@ -34,7 +35,7 @@ void	print_tester_value(t_ms *ms)
 	printf(PURP"NB OF TOKENS: %s%d\n", ENDCL, ms->lexer.nb_of_tokens);
 	while (ms->lexer.tokens_array[i])
 	{
-		printf("String: \"\e[35m%s\e[0m\" Token: %s\n", ms->lexer.tokens_array[i], tokens[ms->lexer.tokens[i]]);
+		printf("String: \"\e[35m%s\e[0m\" Token: \e[35m%s\e[0m\n", ms->lexer.tokens_array[i], tokens[ms->lexer.tokens[i]]);
 		i++;
 	}
 }
