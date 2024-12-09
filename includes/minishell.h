@@ -38,7 +38,8 @@
 # define PURP		"\001\033[35;1m"
 # define ENDCL		"\002\033[0m"
 
-# define MAX_OUTPUT_LENGHT = 1024
+# define MAX_OUTPUT_LENGHT 1024
+# define ENV 				__environ
 
 typedef enum	e_bool
 {
@@ -67,12 +68,18 @@ typedef struct	s_lexer
 	char		**tokens_array;
 }	t_lexer;
 
+typedef struct	s_parser
+{
+	t_bool		already_free;
+	t_bool		is_pipe;
+}	t_parser;
+
 typedef struct	s_ms 
 {
 	t_lexer		lexer;
+	t_parser	parser;
 	char		*input;
-	char		**output_array;
-	
+	char		*buffer;
 }	t_ms;
 
 /******************************************************************************
@@ -87,7 +94,12 @@ void	tokenizer(t_ms *ms);
 /******************************************************************************
  *                                P A R S E R                                  *
 ******************************************************************************/
-
+//
+void	parser(t_ms *ms);
+//
+void	handle_quote(t_ms *ms);
+//
+void	handle_pipes(t_ms *ms);
 
 /******************************************************************************
  *                                 U T I L S                                  *
@@ -105,6 +117,10 @@ char	*ft_strncpy(char *src, char *dest, int size);
 void	main_interface_print(void);
 //The temp file for test all the values.
 void	print_tester_value(t_ms *ms);
+//
+void	free_all(t_ms *ms);
+//
+void	ft_error(t_ms *ms, char *str);
 
 //Main file.
 int		main(void);

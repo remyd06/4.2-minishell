@@ -19,19 +19,24 @@ SRC			=	main.c \
 LEXER		=	source/lexer/count_token.c \
 				source/lexer/tokenizer.c \
 
+PARSER		=	source/parser/parser.c \
+				source/parser/handle_quotes.c \
+				source/parser/handle_pipes.c \
+
 SRC_UTILS	=	source/utils/main_interface_print.c \
 				source/utils/print_tester_value.c \
+				source/utils/ft_error.c \
 				source/utils/ft_ismeta.c \
 				source/utils/ft_isprint.c \
 				source/utils/ft_isspace.c \
 				source/utils/ft_strncpy.c \
 				
-SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER}
+SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER} ${PARSER}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}
 
 # Variables
 CC			=	cc
-CFLAGS		=	-Iincludes -Wall -Werror -Wextra
+CFLAGS		=	-Iincludes -Wall -Werror -Wextra -fsanitize=address -g
 RM			=	rm -rf
 
 # Makefile

@@ -84,7 +84,7 @@ void	tokenizer(t_ms *ms)
 	x = 0;
 	y = 0;
 	count_token(ms);
-	ms->lexer.tokens = malloc(sizeof(int) *(ms->lexer.nb_of_tokens + 1));
+	ms->lexer.tokens = malloc(sizeof(int) * (ms->lexer.nb_of_tokens));
 	ms->lexer.tokens_array = malloc(sizeof(char *) * (ms->lexer.nb_of_tokens + 1));
 	while (isspace(ms->input[x]))
 		x++;
