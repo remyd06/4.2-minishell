@@ -51,8 +51,8 @@ int	main(void)
 		if (ms.buffer)
 			add_history(ms.buffer);
 		tokenizer(&ms);
-		print_tester_value(&ms);
 		parser(&ms);
+		print_tester_value(&ms);
 		if (ms.parser.already_free != TRUE)
 			free_all(&ms);
 	}
