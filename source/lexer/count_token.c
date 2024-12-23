@@ -30,7 +30,6 @@ int	count_token(t_ms *ms)
 			ms->lexer.nb_of_tokens++;
 		if (ft_isspace(ms->input[i]))
 		{
-			ms->lexer.nb_of_tokens++;
 			while (ft_isspace(ms->input[i]))
 				i++;
 		}

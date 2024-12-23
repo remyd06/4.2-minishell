@@ -15,7 +15,6 @@
 void	print_tester_value(t_ms *ms)
 {
 	const char		*tokens[] = {
-	[WSPACE] = "Wspace",
 	[WORD] = "Word",
 	[SINGLE_QUOTE] = "Single Quote",
 	[DOUBLE_QUOTE] = "Double Quote",

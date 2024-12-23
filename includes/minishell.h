@@ -49,7 +49,6 @@ typedef enum	e_bool
 
 typedef enum	e_token
 {
-	WSPACE,				// Whitespace
 	WORD,				// Others
 	SINGLE_QUOTE,		// '
 	DOUBLE_QUOTE,		// "

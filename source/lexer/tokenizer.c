@@ -61,19 +61,15 @@ void	handle_command(t_ms *ms, int *x, int *y)
 	(*y)++;
 }
 
-void	handle_wspace(t_ms *ms, int *x, int *y)
+void	handle_wspace(t_ms *ms, int *x)
 {
 	int	i;
 
 	i = 0;
-	ms->lexer.tokens[*y] = WSPACE;
 	while (ms->input[*x + i] && ft_isspace(ms->input[*x + i]) &&
 		(!ft_ismeta(ms->input[*x + i]) || !ft_isprint(ms->input[*x + i])))
 		i++;
-	ms->lexer.tokens_array[*y] = malloc(sizeof(char) * (i + 1));
-	ft_strncpy(&ms->input[*x], ms->lexer.tokens_array[*y], i);
 	*x += i;
-	(*y)++;
 }
 
 void	tokenizer(t_ms *ms)
@@ -98,7 +94,7 @@ void	tokenizer(t_ms *ms)
 			handle_meta(ms, &x, &y);
 		else if (ms->input && ft_isspace(ms->input[x]) &&
 			(!ft_isprint(ms->input[x]) || !ft_ismeta(ms->input[x])))
-			handle_wspace(ms, &x, &y);
+			handle_wspace(ms, &x);
 		else if (ms->input && ft_isprint(ms->input[x]) &&
 			(!ft_ismeta(ms->input[x]) || !ft_isspace(ms->input[x])))
 			handle_command(ms, &x, &y);
