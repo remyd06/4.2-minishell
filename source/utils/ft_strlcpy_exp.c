@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strlcpy_exp.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 09:20:09 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/31 14:43:29 by rdedola          ###   ########.fr       */
+/*   Created: 2024/12/30 11:04:00 by rdedola           #+#    #+#             */
+/*   Updated: 2024/12/31 12:17:31 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parser(t_ms *ms)
+char	*ft_strlcpy_exp(char *str, char c)
 {
-	count_pipe(ms);
-	if (!handle_quote(ms))
-		return ;
-	if (!handle_pipes(ms))
-		return ;
+	int	i;
+	int	y;
+	char *dest;
+
+	i = 0;
+	y = 0;
+	dest = malloc(sizeof(char) * ft_strllen(str, '=') + 10);
+	while (str[i] != c && str[i])
+		i++;
+	i++;
+	while (str[i])
+	{
+		dest[y] = str[i];
+		i++;
+		y++;
+	}
+	dest[y] = '\0';
+	return (dest);
 }

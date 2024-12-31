@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 09:24:51 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/10 14:11:08 by rdedola          ###   ########.fr       */
+/*   Updated: 2024/12/31 14:52:52 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	convert_double_quotes(t_ms *ms)
 	}
 }
 
-void	handle_quote(t_ms *ms)
+t_bool	handle_quote(t_ms *ms)
 {
 	int	i;
 	int	singleq;
@@ -65,6 +65,8 @@ void	handle_quote(t_ms *ms)
 	i = 0;
 	singleq = 0;
 	doubleq = 0;
+	convert_double_quotes(ms);
+	convert_single_quotes(ms);
 	while (i < ms->lexer.nb_of_tokens)
 	{
 		if (ms->lexer.tokens[i] == SINGLE_QUOTE)
@@ -74,9 +76,8 @@ void	handle_quote(t_ms *ms)
 		i++;
 	}
 	if (singleq % 2 == 1)
-		ft_error(ms, "Invalid single quote.");
-	 else if (doubleq % 2 == 1)
-	 	ft_error(ms, "Invalid double quote.");
-	convert_double_quotes(ms);
-	convert_single_quotes(ms);
+		return (ft_error("Invalid single quote."));
+	else if (doubleq % 2 == 1)
+	 	return (ft_error("Invalid double quote."));
+	return (TRUE);
 }

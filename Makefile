@@ -14,29 +14,44 @@
 EXE			=	minishell
 
 # Files
+VPATH 		=	source \
+				source/lexer \
+				source/parser \
+				source/expander \
+				source/utils \
+
 SRC			=	main.c \
 
-LEXER		=	source/lexer/count_token.c \
-				source/lexer/tokenizer.c \
+LEXER		=	count_token.c \
+				tokenizer.c \
 
-PARSER		=	source/parser/parser.c \
-				source/parser/handle_quotes.c \
-				source/parser/handle_pipes.c \
+PARSER		=	parser.c \
+				handle_quotes.c \
+				handle_pipes.c \
+				count_pipe.c \
 
-SRC_UTILS	=	source/utils/main_interface_print.c \
-				source/utils/print_tester_value.c \
-				source/utils/ft_error.c \
-				source/utils/ft_ismeta.c \
-				source/utils/ft_isprint.c \
-				source/utils/ft_isspace.c \
-				source/utils/ft_strncpy.c \
+EXPANDER	=	init_env.c
+
+SRC_UTILS	=	main_interface_print.c \
+				print_tester_value.c \
+				ft_error.c \
+				ft_ismeta.c \
+				ft_isprint.c \
+				ft_isspace.c \
+				ft_strncpy.c \
+				ft_strncpy_exp.c \
+				ft_strlcpy_exp.c \
+				ft_lstnew.c \
+				ft_strnlen.c \
+				ft_strllen.c \
+				ft_strlen.c \
 				
-SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER} ${PARSER}
+SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER} ${PARSER} ${EXPANDER}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}
 
 # Variables
 CC			=	cc
-CFLAGS		=	-Iincludes -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS		=	-Iincludes -Wall -Wextra -fsanitize=address -g
 RM			=	rm -rf
 
 # Makefile

@@ -15,6 +15,7 @@
 void	print_tester_value(t_ms *ms)
 {
 	const char		*tokens[] = {
+	[WSPACE] = "Wspace",
 	[WORD] = "Word",
 	[SINGLE_QUOTE] = "Single Quote",
 	[DOUBLE_QUOTE] = "Double Quote",
@@ -37,4 +38,6 @@ void	print_tester_value(t_ms *ms)
 		printf("String: \"\e[35m%s\e[0m\" Token: \e[35m%s\e[0m\n", ms->lexer.tokens_array[i], tokens[ms->lexer.tokens[i]]);
 		i++;
 	}
+	printf(PURP"=============== P A R S E R =============== \n"ENDCL);
+	printf(PURP"NB OF PIPES : %s%d\n", ENDCL, ms->parser.nb_pipe);
 }

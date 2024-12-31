@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   count_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 09:20:09 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/31 14:43:29 by rdedola          ###   ########.fr       */
+/*   Created: 2024/12/23 14:48:22 by rdedola           #+#    #+#             */
+/*   Updated: 2024/12/23 15:03:25 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parser(t_ms *ms)
+void	count_pipe(t_ms *ms)
 {
-	count_pipe(ms);
-	if (!handle_quote(ms))
-		return ;
-	if (!handle_pipes(ms))
-		return ;
+	int	i;
+
+	i = 0;
+	while (i < ms->lexer.nb_of_tokens)
+	{
+		if (ms->lexer.tokens[i] == PIPE)
+			ms->parser.nb_pipe++;
+		i++;
+	}
 }

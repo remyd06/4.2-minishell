@@ -49,6 +49,7 @@ typedef enum	e_bool
 
 typedef enum	e_token
 {
+	WSPACE,				// Whitespace
 	WORD,				// Others
 	SINGLE_QUOTE,		// '
 	DOUBLE_QUOTE,		// "
@@ -57,7 +58,9 @@ typedef enum	e_token
 	REDOUT,				// >
 	HEREDOC,			// <<
 	APPEND_REDIR,		// >>
-	DOLLAR,				//$
+	DOLLAR,				// $
+	NA,					// NULL token
+	END,				// End of the array
 }	t_token;
 
 typedef struct	s_lexer
@@ -69,17 +72,32 @@ typedef struct	s_lexer
 
 typedef struct	s_parser
 {
-	t_bool		already_free;
-	t_bool		is_pipe;
+	int			nb_pipe;
 }	t_parser;
+
+typedef struct	s_expand
+{
+	char	*buffer_name;
+	char	*buffer_arg;
+}	t_expand;
+
+typedef	struct s_env
+{
+	char			*name;
+	char			*arg;
+	struct s_env	*next;
+}	t_env;
 
 typedef struct	s_ms 
 {
 	t_lexer		lexer;
 	t_parser	parser;
+	t_expand	expand;
 	char		*input;
 	char		*buffer;
 }	t_ms;
+
+
 
 /******************************************************************************
  *                                 L E X E R                                  *
@@ -90,21 +108,29 @@ int		count_token(t_ms *ms);
 //Split and categorize each element of the input in a **array with his token.
 void	tokenizer(t_ms *ms);
 
+void	count_pipe(t_ms *ms);
+
 /******************************************************************************
  *                                P A R S E R                                  *
 ******************************************************************************/
 //
 void	parser(t_ms *ms);
 //
-void	handle_quote(t_ms *ms);
+t_bool	handle_quote(t_ms *ms);
 //
-void	handle_pipes(t_ms *ms);
+t_bool	handle_pipes(t_ms *ms);
+
+/******************************************************************************
+ *                              E X P A N D E R                               *
+******************************************************************************/
+//
+void	init_env(t_ms *ms, t_env **env);
 
 /******************************************************************************
  *                                 U T I L S                                  *
 ******************************************************************************/
 
-//Check if the accurate char is a meta char.
+//Check if the accurate char is a meta char.t_env	*ft_lstnew(char *name, char *arg)
 t_bool	ft_ismeta(char c);
 //Check if the accurate char is a printable char.
 t_bool	ft_isprint(int c);
@@ -119,7 +145,19 @@ void	print_tester_value(t_ms *ms);
 //
 void	free_all(t_ms *ms);
 //
-void	ft_error(t_ms *ms, char *str);
+t_bool	ft_error(char *str);
+//
+t_env	*ft_lstnew(char *name, char *arg);
+//
+int		ft_strnlen(char *str, char c);
+//
+char	*ft_strlcpy_exp(char *src, char c);
+//
+int		ft_strllen(char *str, char c);
+//
+int		ft_strlen(char *str);
+//
+char	*ft_strncpy_exp(char *str, char c);
 
 //Main file.
 int		main(void);

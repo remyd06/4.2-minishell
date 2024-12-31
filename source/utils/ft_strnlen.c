@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strnlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 09:20:09 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/31 14:43:29 by rdedola          ###   ########.fr       */
+/*   Created: 2024/12/30 10:28:08 by rdedola           #+#    #+#             */
+/*   Updated: 2024/12/31 09:53:28 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parser(t_ms *ms)
+int	ft_strnlen(char *str, char c)
 {
-	count_pipe(ms);
-	if (!handle_quote(ms))
-		return ;
-	if (!handle_pipes(ms))
-		return ;
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	return (i);
 }

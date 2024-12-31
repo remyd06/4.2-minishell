@@ -32,15 +32,16 @@ void	init_shell(t_ms *ms)
 	ms->lexer.nb_of_tokens = 0;
 	ms->lexer.tokens_array = NULL;
 	ms->lexer.tokens = NULL;
-	ms->parser.already_free = FALSE;
-	ms->parser.is_pipe = FALSE;
+	ms->parser.nb_pipe = 0;
 }
 
 int	main(void)
 {
 	t_ms	ms;
+	//t_env	*env = NULL;
 
 	main_interface_print();
+	//init_env(&ms, &env);
 	while (1)
 	{
 		init_shell(&ms);
@@ -53,7 +54,6 @@ int	main(void)
 		tokenizer(&ms);
 		parser(&ms);
 		print_tester_value(&ms);
-		if (ms.parser.already_free != TRUE)
-			free_all(&ms);
+		free_all(&ms);
 	}
 }
