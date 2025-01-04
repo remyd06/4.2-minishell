@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 09:24:51 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/31 14:52:52 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/01/04 15:53:51 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	convert_double_quotes(t_ms *ms)
 		{
 			while (ms->lexer.tokens[i] != DOUBLE_QUOTE)
 			{
-				if (ms->lexer.tokens[i] == DOLLAR)
+				if (ms->lexer.tokens[i] == DOLLAR &&
+					ms->lexer.tokens[i + 1] == WORD)
 					i++;
 				else
 				{

@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 09:20:09 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/31 14:43:29 by rdedola          ###   ########.fr       */
+/*   Created: 2025/01/04 14:46:16 by rdedola           #+#    #+#             */
+/*   Updated: 2025/01/04 14:51:42 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parser(t_ms *ms)
+char	*ft_strdup(char *str)
 {
-	count_pipe(ms);
-	if (!handle_quote(ms))
-		return ;
-	if (!handle_pipes(ms))
-		return ;
+	char	*dest;
+	int		i;
+
+	i = 0;
+	if (!str)
+		return (NULL);
+	dest = malloc(sizeof(char) * ft_strlen(str) + 1);
+	if (!dest)
+		return (NULL);
+	while (str[i])
+	{
+		dest[i] = str[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

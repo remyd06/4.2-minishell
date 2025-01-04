@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_expander.c                                  :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 15:20:57 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/23 15:33:10 by rdedola          ###   ########.fr       */
+/*   Created: 2024/12/09 09:20:09 by rdedola           #+#    #+#             */
+/*   Updated: 2025/01/04 16:14:12 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_expander(t_ms *ms)
+void	parser(t_ms *ms)
 {
-	int	x;
-	int	y;
-
-	while ()
+	count_pipe(ms);
+	if (!handle_quote(ms))
+		return ;
+	if (!handle_pipes(ms))
+		return ;
+	if (!handle_redir(ms))
+		return ;
 }

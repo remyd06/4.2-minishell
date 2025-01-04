@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 09:13:28 by rdedola           #+#    #+#             */
-/*   Updated: 2024/12/31 09:43:50 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/01/04 14:47:22 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ t_env	*ft_lstnew(char *name, char *arg)
 	new = malloc(sizeof(t_env));
 	if (!new)
 		return (NULL);
-	//new->name = malloc(sizeof(char) * ft_strlen(name));
-	new->name = name;
-	//new->arg = malloc(sizeof(char) * ft_strlen(arg));
-	new->arg = arg;
+	new->name = ft_strdup(name);
+	new->arg = ft_strdup(arg);
 	new->next = NULL;
 	return (new);
 }

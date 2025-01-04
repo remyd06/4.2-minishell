@@ -102,34 +102,37 @@ typedef struct	s_ms
 /******************************************************************************
  *                                 L E X E R                                  *
 ******************************************************************************/
-
 //Count the nb of tokens in the input.
 int		count_token(t_ms *ms);
 //Split and categorize each element of the input in a **array with his token.
 void	tokenizer(t_ms *ms);
-
+//Count the nb of pipe in the input.
 void	count_pipe(t_ms *ms);
+
 
 /******************************************************************************
  *                                P A R S E R                                  *
 ******************************************************************************/
-//
+//Main file for the parsing.
 void	parser(t_ms *ms);
-//
+//Parse and convert all tokens between "" or '' in a WORD token (except $) for "".
 t_bool	handle_quote(t_ms *ms);
-//
+//Check if after a PIPE is surronded by WORDS.
 t_bool	handle_pipes(t_ms *ms);
+//
+t_bool	handle_redir(t_ms *ms);
+
 
 /******************************************************************************
  *                              E X P A N D E R                               *
 ******************************************************************************/
-//
+//Initialize environement in a chained list.
 void	init_env(t_ms *ms, t_env **env);
+
 
 /******************************************************************************
  *                                 U T I L S                                  *
 ******************************************************************************/
-
 //Check if the accurate char is a meta char.t_env	*ft_lstnew(char *name, char *arg)
 t_bool	ft_ismeta(char c);
 //Check if the accurate char is a printable char.
@@ -158,6 +161,8 @@ int		ft_strllen(char *str, char c);
 int		ft_strlen(char *str);
 //
 char	*ft_strncpy_exp(char *str, char c);
+//
+char	*ft_strdup(char *str);
 
 //Main file.
 int		main(void);

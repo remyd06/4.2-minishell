@@ -15,9 +15,9 @@ EXE			=	minishell
 
 # Files
 VPATH 		=	source \
-				source/lexer \
-				source/parser \
-				source/expander \
+				source/parsing/lexer \
+				source/parsing/parser \
+				source/parsing/expander \
 				source/utils \
 
 SRC			=	main.c \
@@ -28,6 +28,7 @@ LEXER		=	count_token.c \
 PARSER		=	parser.c \
 				handle_quotes.c \
 				handle_pipes.c \
+				handle_redir.c \
 				count_pipe.c \
 
 EXPANDER	=	init_env.c
@@ -45,6 +46,7 @@ SRC_UTILS	=	main_interface_print.c \
 				ft_strnlen.c \
 				ft_strllen.c \
 				ft_strlen.c \
+				ft_strdup.c \
 				
 SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER} ${PARSER} ${EXPANDER}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}

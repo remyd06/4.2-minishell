@@ -38,10 +38,10 @@ void	init_shell(t_ms *ms)
 int	main(void)
 {
 	t_ms	ms;
-	//t_env	*env = NULL;
+	t_env	*env;
 
 	main_interface_print();
-	//init_env(&ms, &env);
+	init_env(&ms, &env);
 	while (1)
 	{
 		init_shell(&ms);
