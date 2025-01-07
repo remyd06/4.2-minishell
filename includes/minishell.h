@@ -106,7 +106,7 @@ void	count_pipe(t_ms *ms);
 //Main file for the parsing.
 void	parser(t_ms *ms, t_env *env);
 //Parse and convert all tokens between "" or '' in a WORD token (except $) for "".
-t_bool	handle_quote(t_ms *ms);
+t_bool	handle_quote(t_ms *ms, t_env *env);
 //Check if after a PIPE is surronded by WORDS.
 t_bool	handle_pipes(t_ms *ms);
 //
@@ -120,7 +120,7 @@ void	union_quote(t_ms *ms);
 //Initialize environement in a chained list.
 void	init_env(t_env **env);
 //
-void	expand_var(t_ms *ms, t_env *env);
+void	expand_var(t_ms *ms, t_env *env, int i);
 
 /******************************************************************************
  *                                 U T I L S                                  *

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 10:33:12 by rdedola           #+#    #+#             */
-/*   Updated: 2025/01/07 15:28:32 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/01/07 23:32:55 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,21 @@ char	*search_var(char *str, t_env *env)
 	return (NULL);
 }
 
-void	expand_var(t_ms *ms, t_env *env)
+void	expand_var(t_ms *ms, t_env *env, int i)
 {
-	int		i;
 	char	*str_env;
 
-	i = 0;
-	while (i < ms->lexer.nb_of_tokens)
+	str_env = search_var(ms->lexer.tokens_array[i], env);
+	ms->lexer.tokens[i - 1] = NA;
+	if (str_env != NULL)
 	{
-		if (ms->lexer.tokens[i] == DOLLAR && ms->lexer.tokens[i + 1] == WORD)
-		{
-			ms->lexer.tokens[i] = NA;
-			i++;
-			str_env = search_var(ms->lexer.tokens_array[i], env);
-			free(ms->lexer.tokens_array[i]);
-			ms->lexer.tokens_array[i] = ft_strdup(str_env);
-		}
-		i++;
+		free(ms->lexer.tokens_array[i]);
+		ms->lexer.tokens_array[i] = ft_strdup(str_env);
+	}
+	else if (str_env == NULL)
+	{
+		ms->lexer.tokens[i] = NA;
+		printf("%s", ms->lexer.tokens_array[i]);
+		printf("%d", ms->lexer.tokens[i]);
 	}
 }

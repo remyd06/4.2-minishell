@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 09:24:51 by rdedola           #+#    #+#             */
-/*   Updated: 2025/01/07 13:59:01 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/01/07 23:43:38 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	convert_single_quotes(t_ms *ms)
 	}
 }
 
-void	convert_double_quotes(t_ms *ms)
+void	convert_double_quotes(t_ms *ms, t_env *env)
 {
 	int	i;
 
@@ -43,8 +43,12 @@ void	convert_double_quotes(t_ms *ms)
 		{
 			while (ms->lexer.tokens[i] != DOUBLE_QUOTE)
 			{
-				if (ms->lexer.tokens[i] == DOLLAR)
+				if (ms->lexer.tokens[i] == DOLLAR
+					&& ms->lexer.tokens[i + 1] == WORD)
+				{
+					expand_var(ms, env, ++i);
 					i++;
+				}
 				else
 				{
 					ms->lexer.tokens[i] = WORD;
@@ -56,7 +60,7 @@ void	convert_double_quotes(t_ms *ms)
 	}
 }
 
-t_bool	handle_quote(t_ms *ms)
+t_bool	handle_quote(t_ms *ms, t_env *env)
 {
 	int	i;
 	int	singleq;
@@ -77,7 +81,7 @@ t_bool	handle_quote(t_ms *ms)
 		return (ft_error("Invalid single quote."));
 	else if (doubleq % 2 == 1)
 	 	return (ft_error("Invalid double quote."));
-	convert_double_quotes(ms);
 	convert_single_quotes(ms);
+	convert_double_quotes(ms, env);
 	return (TRUE);
 }
