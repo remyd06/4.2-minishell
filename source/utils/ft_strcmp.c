@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy_exp.c                                   :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 12:36:56 by rdedola           #+#    #+#             */
-/*   Updated: 2025/01/07 15:06:11 by rdedola          ###   ########.fr       */
+/*   Created: 2025/01/07 10:40:32 by rdedola           #+#    #+#             */
+/*   Updated: 2025/01/07 10:44:01 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_strncpy_exp(char *str, char c)
+t_bool	ft_strcmp(char *str1, char *str2)
 {
 	int	i;
-	char *dest;
 
 	i = 0;
-	dest = malloc(sizeof(char) * ft_strnlen(str, '=') + 1);
-	while (str[i] != c)
+	while (str1[i] || str2[i])
 	{
-		dest[i] = str[i];
+		if (str1[i] != str2[i])
+			return (false);
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	return (TRUE);
 }

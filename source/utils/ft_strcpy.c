@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy_exp.c                                   :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 12:36:56 by rdedola           #+#    #+#             */
-/*   Updated: 2025/01/07 15:06:11 by rdedola          ###   ########.fr       */
+/*   Created: 2025/01/07 11:38:19 by rdedola           #+#    #+#             */
+/*   Updated: 2025/01/07 11:46:00 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_strncpy_exp(char *str, char c)
+char	*ft_strcpy(char *src, char *dest)
 {
 	int	i;
-	char *dest;
 
 	i = 0;
-	dest = malloc(sizeof(char) * ft_strnlen(str, '=') + 1);
-	while (str[i] != c)
+	while (src[i])
 	{
-		dest[i] = str[i];
+		dest[i] = src[i];
 		i++;
 	}
 	dest[i] = '\0';

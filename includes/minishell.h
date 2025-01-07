@@ -63,6 +63,13 @@ typedef enum	e_token
 	END,				// End of the array
 }	t_token;
 
+typedef	struct s_env
+{
+	char			*name;
+	char			*arg;
+	struct s_env	*next;
+}	t_env;
+
 typedef struct	s_lexer
 {
 	int			nb_of_tokens;
@@ -75,29 +82,13 @@ typedef struct	s_parser
 	int			nb_pipe;
 }	t_parser;
 
-typedef struct	s_expand
-{
-	char	*buffer_name;
-	char	*buffer_arg;
-}	t_expand;
-
-typedef	struct s_env
-{
-	char			*name;
-	char			*arg;
-	struct s_env	*next;
-}	t_env;
-
 typedef struct	s_ms 
 {
 	t_lexer		lexer;
 	t_parser	parser;
-	t_expand	expand;
 	char		*input;
 	char		*buffer;
 }	t_ms;
-
-
 
 /******************************************************************************
  *                                 L E X E R                                  *
@@ -109,26 +100,27 @@ void	tokenizer(t_ms *ms);
 //Count the nb of pipe in the input.
 void	count_pipe(t_ms *ms);
 
-
 /******************************************************************************
  *                                P A R S E R                                  *
 ******************************************************************************/
 //Main file for the parsing.
-void	parser(t_ms *ms);
+void	parser(t_ms *ms, t_env *env);
 //Parse and convert all tokens between "" or '' in a WORD token (except $) for "".
 t_bool	handle_quote(t_ms *ms);
 //Check if after a PIPE is surronded by WORDS.
 t_bool	handle_pipes(t_ms *ms);
 //
 t_bool	handle_redir(t_ms *ms);
-
+//
+void	union_quote(t_ms *ms);
 
 /******************************************************************************
  *                              E X P A N D E R                               *
 ******************************************************************************/
 //Initialize environement in a chained list.
-void	init_env(t_ms *ms, t_env **env);
-
+void	init_env(t_env **env);
+//
+void	expand_var(t_ms *ms, t_env *env);
 
 /******************************************************************************
  *                                 U T I L S                                  *
@@ -146,7 +138,9 @@ void	main_interface_print(void);
 //The temp file for test all the values.
 void	print_tester_value(t_ms *ms);
 //
-void	free_all(t_ms *ms);
+void	free_tok(t_ms *ms);
+//
+void	free_env(t_env *env);
 //
 t_bool	ft_error(char *str);
 //
@@ -163,6 +157,10 @@ int		ft_strlen(char *str);
 char	*ft_strncpy_exp(char *str, char c);
 //
 char	*ft_strdup(char *str);
+//
+t_bool	ft_strcmp(char *str1, char *str2);
+//
+char	*ft_strcpy(char *src, char *dest);
 
 //Main file.
 int		main(void);

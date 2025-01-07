@@ -26,12 +26,14 @@ LEXER		=	count_token.c \
 				tokenizer.c \
 
 PARSER		=	parser.c \
+				count_pipe.c \
 				handle_quotes.c \
 				handle_pipes.c \
 				handle_redir.c \
-				count_pipe.c \
+				union_quote.c \
 
-EXPANDER	=	init_env.c
+EXPANDER	=	init_env.c \
+				expand_var.c \
 
 SRC_UTILS	=	main_interface_print.c \
 				print_tester_value.c \
@@ -47,13 +49,16 @@ SRC_UTILS	=	main_interface_print.c \
 				ft_strllen.c \
 				ft_strlen.c \
 				ft_strdup.c \
+				ft_strcmp.c \
+				ft_strcpy.c \
+				ft_freebox.c \
 				
 SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER} ${PARSER} ${EXPANDER}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}
 
 # Variables
 CC			=	cc
-CFLAGS		=	-Iincludes -Wall -Wextra -fsanitize=address -g
+CFLAGS		=	-Iincludes -Wall -Wextra
 RM			=	rm -rf
 
 # Makefile

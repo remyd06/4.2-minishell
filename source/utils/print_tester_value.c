@@ -25,6 +25,7 @@ void	print_tester_value(t_ms *ms)
 	[HEREDOC] = "Heredoc",
 	[APPEND_REDIR] = "Append Redirect",
 	[DOLLAR] = "Dollar",
+	[NA] = "NULL Token",
 	};
 
 	int	i;

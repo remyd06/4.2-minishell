@@ -12,19 +12,15 @@
 
 #include "minishell.h"
 
-void	free_all(t_ms *ms)
+void	handle_macro(int sig)
 {
-	int	i;
-
-	if (ms->buffer)
-		free(ms->buffer);
-	i = 0;
-	while (ms->lexer.tokens_array && ms->lexer.tokens_array[i])
-		free(ms->lexer.tokens_array[i++]);
-	free(ms->lexer.tokens_array);
-	free(ms->lexer.tokens);
-	ms->lexer.tokens_array = NULL;
-	ms->lexer.tokens = NULL;
+	if (sig == SIGINT)
+	{
+		rl_on_new_line();
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 }
 
 void	init_shell(t_ms *ms)
@@ -41,19 +37,21 @@ int	main(void)
 	t_env	*env;
 
 	main_interface_print();
-	init_env(&ms, &env);
+	init_env(&env);
+	signal(SIGINT, handle_macro);
 	while (1)
 	{
 		init_shell(&ms);
 		ms.buffer = readline(YEL"MINISHELL> "ENDCL);
-			if (!ms.buffer)
-				return (0);
+		if (!ms.buffer)
+			break;
 		ms.input = ms.buffer;
 		if (ms.buffer)
 			add_history(ms.buffer);
 		tokenizer(&ms);
-		parser(&ms);
+		parser(&ms, env);
 		print_tester_value(&ms);
-		free_all(&ms);
+		free_tok(&ms);
 	}
+	free_env(env);
 }

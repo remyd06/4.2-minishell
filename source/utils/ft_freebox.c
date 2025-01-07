@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy_exp.c                                   :+:      :+:    :+:   */
+/*   ft_freebox.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 12:36:56 by rdedola           #+#    #+#             */
-/*   Updated: 2025/01/07 15:06:11 by rdedola          ###   ########.fr       */
+/*   Created: 2025/01/07 14:30:49 by rdedola           #+#    #+#             */
+/*   Updated: 2025/01/07 15:09:12 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_strncpy_exp(char *str, char c)
+void	free_tok(t_ms *ms)
 {
 	int	i;
-	char *dest;
 
+	if (ms->buffer)
+		free(ms->buffer);
 	i = 0;
-	dest = malloc(sizeof(char) * ft_strnlen(str, '=') + 1);
-	while (str[i] != c)
+	while (ms->lexer.tokens_array && ms->lexer.tokens_array[i])
+		free(ms->lexer.tokens_array[i++]);
+	free(ms->lexer.tokens_array);
+	free(ms->lexer.tokens);
+	ms->lexer.tokens_array = NULL;
+	ms->lexer.tokens = NULL;
+}
+
+void	free_env(t_env *env)
+{
+	t_env	*temp;
+
+	while (env)
 	{
-		dest[i] = str[i];
-		i++;
+		temp = env->next;
+		free(env->name);
+		free(env->arg);
+		free(env);
+		env = temp;
 	}
-	dest[i] = '\0';
-	return (dest);
 }
