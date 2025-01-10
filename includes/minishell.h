@@ -63,6 +63,7 @@ typedef enum	e_token
 	END,				// End of the array
 }	t_token;
 
+//ENV chained list.
 typedef	struct s_env
 {
 	char			*name;
@@ -70,6 +71,7 @@ typedef	struct s_env
 	struct s_env	*next;
 }	t_env;
 
+//Lexer struct.
 typedef struct	s_lexer
 {
 	int			nb_of_tokens;
@@ -77,11 +79,13 @@ typedef struct	s_lexer
 	char		**tokens_array;
 }	t_lexer;
 
+//Parser struct.
 typedef struct	s_parser
 {
 	int			nb_pipe;
 }	t_parser;
 
+//Main struct.
 typedef struct	s_ms 
 {
 	t_lexer		lexer;
@@ -107,25 +111,29 @@ void	count_pipe(t_ms *ms);
 void	parser(t_ms *ms, t_env *env);
 //Parse and convert all tokens between "" or '' in a WORD token (except $) for "".
 t_bool	handle_quote(t_ms *ms, t_env *env);
-//Check if after a PIPE is surronded by WORDS.
+//Check if a PIPE is surronded by WORDS.
 t_bool	handle_pipes(t_ms *ms);
-//
+//Check if REDIR is followed by WORD.
 t_bool	handle_redir(t_ms *ms);
-//
+//Join in one token all the string between "" or ''.
 void	union_quote(t_ms *ms);
+//Free the old output and write the new one without NA tokens or WSPACE tokens.
+void	final_sort(t_ms *ms);
 
 /******************************************************************************
  *                              E X P A N D E R                               *
 ******************************************************************************/
 //Initialize environement in a chained list.
 void	init_env(t_env **env);
-//
+//Expander module discociated for handle expander in handle_quote function.
 void	expand_var(t_ms *ms, t_env *env, int i);
+//Main core of the expander for all the input string.
+void	expander(t_ms *ms, t_env *env);
 
 /******************************************************************************
  *                                 U T I L S                                  *
 ******************************************************************************/
-//Check if the accurate char is a meta char.t_env	*ft_lstnew(char *name, char *arg)
+//Check if the accurate char is a meta char.
 t_bool	ft_ismeta(char c);
 //Check if the accurate char is a printable char.
 t_bool	ft_isprint(int c);
@@ -137,30 +145,30 @@ char	*ft_strncpy(char *src, char *dest, int size);
 void	main_interface_print(void);
 //The temp file for test all the values.
 void	print_tester_value(t_ms *ms);
-//
+//Free the int* tokens, and the char** token_array.
 void	free_tok(t_ms *ms);
-//
+//Free the chained list who contained all the ENV values.
 void	free_env(t_env *env);
-//
+//Handle error messages.
 t_bool	ft_error(char *str);
-//
+//Create a new chained list.
 t_env	*ft_lstnew(char *name, char *arg);
-//
+//Count and return the nb of char up to the specified char.
 int		ft_strnlen(char *str, char c);
-//
-char	*ft_strlcpy_exp(char *src, char c);
-//
+//COunt and return the nb of char form the specified char to the end.
 int		ft_strllen(char *str, char c);
-//
-int		ft_strlen(char *str);
-//
+//Copy the the string up to the specified char. Only for expander function.
 char	*ft_strncpy_exp(char *str, char c);
-//
+//Copy the the string from the specified char to the end. Only for expander function.
+char	*ft_strlcpy_exp(char *src, char c);
+//Count and return the nb of character in a string.
+int		ft_strlen(char *str);
+//Duplicate with malloc a string.
 char	*ft_strdup(char *str);
-//
-t_bool	ft_strcmp(char *str1, char *str2);
-//
+//Copy the src string in the dest string.
 char	*ft_strcpy(char *src, char *dest);
+//Compare two strings and return TRUE if they are the same, or FALSE if not.
+t_bool	ft_strcmp(char *str1, char *str2);
 
 //Main file.
 int		main(void);

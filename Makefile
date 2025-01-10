@@ -31,9 +31,11 @@ PARSER		=	parser.c \
 				handle_pipes.c \
 				handle_redir.c \
 				union_quote.c \
+				final_sort.c \
 
 EXPANDER	=	init_env.c \
 				expand_var.c \
+				expander.c \
 
 SRC_UTILS	=	main_interface_print.c \
 				print_tester_value.c \
@@ -58,7 +60,7 @@ OBJECTS		=	${SOURCES:%.c=obj/%.o}
 
 # Variables
 CC			=	cc
-CFLAGS		=	-Iincludes -Wall -Wextra
+CFLAGS		=	-Iincludes -Wall -Wextra -fsanitize=address -g
 RM			=	rm -rf
 
 # Makefile

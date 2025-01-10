@@ -31,7 +31,7 @@ void	print_tester_value(t_ms *ms)
 	int	i;
 
 	i = 0;
-	printf(PURP"=============== L E X E R =============== \n"ENDCL);
+	printf(PURP"=============== O U T P U T =============== \n"ENDCL);
 	printf(PURP"INPUT: %s%s\n", ENDCL, ms->input);
 	printf(PURP"NB OF TOKENS: %s%d\n", ENDCL, ms->lexer.nb_of_tokens);
 	while (ms->lexer.tokens_array[i])
@@ -39,6 +39,6 @@ void	print_tester_value(t_ms *ms)
 		printf("String: \"\e[35m%s\e[0m\" Token: \e[35m%s\e[0m\n", ms->lexer.tokens_array[i], tokens[ms->lexer.tokens[i]]);
 		i++;
 	}
-	printf(PURP"=============== P A R S E R =============== \n"ENDCL);
+	printf(PURP"=============== P I P E S =============== \n"ENDCL);
 	printf(PURP"NB OF PIPES : %s%d\n", ENDCL, ms->parser.nb_pipe);
 }

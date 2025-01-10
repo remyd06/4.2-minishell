@@ -36,8 +36,8 @@ int	main(void)
 	t_ms	ms;
 	t_env	*env;
 
-	main_interface_print();
 	init_env(&env);
+	main_interface_print();
 	signal(SIGINT, handle_macro);
 	while (1)
 	{
