@@ -6,7 +6,7 @@
 /*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 09:24:51 by rdedola           #+#    #+#             */
-/*   Updated: 2025/01/07 23:43:38 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/01/14 19:15:33 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	convert_double_quotes(t_ms *ms, t_env *env)
 	{
 		if (ms->lexer.tokens[i++] == DOUBLE_QUOTE)
 		{
-			while (ms->lexer.tokens[i] != DOUBLE_QUOTE)
+			while (ms->lexer.tokens[i] != END
+				&& ms->lexer.tokens[i] != DOUBLE_QUOTE)
 			{
 				if (ms->lexer.tokens[i] == DOLLAR
 					&& ms->lexer.tokens[i + 1] == WORD)
@@ -50,10 +51,7 @@ void	convert_double_quotes(t_ms *ms, t_env *env)
 					i++;
 				}
 				else
-				{
-					ms->lexer.tokens[i] = WORD;
-					i++;
-				}
+					ms->lexer.tokens[i++] = WORD;
 			}
 		}
 		i++;

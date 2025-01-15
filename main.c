@@ -49,8 +49,8 @@ int	main(void)
 		if (ms.buffer)
 			add_history(ms.buffer);
 		tokenizer(&ms);
-		parser(&ms, env);
-		print_tester_value(&ms);
+		if (parser(&ms, env))
+			print_tester_value(&ms);
 		free_tok(&ms);
 	}
 	free_env(env);

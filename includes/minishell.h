@@ -108,7 +108,7 @@ void	count_pipe(t_ms *ms);
  *                                P A R S E R                                  *
 ******************************************************************************/
 //Main file for the parsing.
-void	parser(t_ms *ms, t_env *env);
+t_bool	parser(t_ms *ms, t_env *env);
 //Parse and convert all tokens between "" or '' in a WORD token (except $) for "".
 t_bool	handle_quote(t_ms *ms, t_env *env);
 //Check if a PIPE is surronded by WORDS.

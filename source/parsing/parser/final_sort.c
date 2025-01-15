@@ -6,7 +6,7 @@
 /*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:59:51 by rdedola           #+#    #+#             */
-/*   Updated: 2025/01/10 12:15:07 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/01/15 01:14:31 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ void	final_sort(t_ms *ms)
 	temp = malloc(sizeof(char *) * (tab_size + 1));
 	while (i < ms->lexer.nb_of_tokens)
 	{
-		if (ms->lexer.tokens[i] != WSPACE && ms->lexer.tokens[i] != NA)
+		if (ms->lexer.tokens[i] != WSPACE && ms->lexer.tokens[i] != NA
+			&& ms->lexer.tokens_array[i][0] != '\0')
 		{
 			temp[j] = malloc(sizeof(char) * (ft_strlen(ms->lexer.tokens_array[i]) + 1));
 			ft_strcpy(ms->lexer.tokens_array[i], temp[j]);

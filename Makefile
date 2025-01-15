@@ -63,11 +63,19 @@ CC			=	cc
 CFLAGS		=	-Iincludes -Wall -Wextra -fsanitize=address -g
 RM			=	rm -rf
 
+# Colors
+DEF_COLOR	= \033[0;39m
+COLOR		= \033[1;32m
+
 # Makefile
 all:		${EXE}
 
 ${EXE}:		${OBJECTS}
 			@${CC} ${CFLAGS} ${OBJECTS} -lreadline -o ${EXE}
+			@${CC} ${CFLAGS} ${OBJECTS} -lreadline -o ${EXE}
+			@echo "${COLOR}╔══════════════════════════╗${DEF_COLOR}"
+			@echo "${COLOR}║    Minishell compiled    ║${DEF_COLOR}"
+			@echo "${COLOR}╚══════════════════════════╝${DEF_COLOR}"
 
 obj/%.o:	%.c
 			@mkdir -p obj/$(dir $<)
@@ -76,6 +84,9 @@ obj/%.o:	%.c
 clean:
 			@${RM} obj
 			@${RM} #{EXE}.log
+			@echo "${COLOR}╔══════════════════════════╗${DEF_COLOR}"
+			@echo "${COLOR}║    Minishell cleaned!    ║${DEF_COLOR}"
+			@echo "${COLOR}╚══════════════════════════╝${DEF_COLOR}"
 
 fclean:		clean
 			@${RM} ${EXE}
