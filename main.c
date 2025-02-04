@@ -31,12 +31,13 @@ void	init_shell(t_ms *ms)
 	ms->parser.nb_pipe = 0;
 }
 
-int	main(void)
+int	main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, char **envp)
 {
 	t_ms	ms;
 	t_env	*env;
 
-	init_env(&env);
+	ms.env_array = envp;
+	init_env(&ms, &env);
 	main_interface_print();
 	signal(SIGINT, handle_macro);
 	while (1)

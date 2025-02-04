@@ -39,7 +39,6 @@
 # define ENDCL		"\002\033[0m"
 
 # define MAX_OUTPUT_LENGHT 1024
-# define ENV 				__environ
 
 typedef enum	e_bool
 {
@@ -92,6 +91,7 @@ typedef struct	s_ms
 	t_parser	parser;
 	char		*input;
 	char		*buffer;
+	char		**env_array;
 }	t_ms;
 
 /******************************************************************************
@@ -124,7 +124,7 @@ void	final_sort(t_ms *ms);
  *                              E X P A N D E R                               *
 ******************************************************************************/
 //Initialize environement in a chained list.
-void	init_env(t_env **env);
+void	init_env(t_ms *ms, t_env **env);
 //Expander module discociated for handle expander in handle_quote function.
 void	expand_var(t_ms *ms, t_env *env, int i);
 //Main core of the expander for all the input string.
@@ -171,7 +171,7 @@ char	*ft_strcpy(char *src, char *dest);
 t_bool	ft_strcmp(char *str1, char *str2);
 
 //Main file.
-int		main(void);
+int		main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, char **envp);
 
 
 #endif

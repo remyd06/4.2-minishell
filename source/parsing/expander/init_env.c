@@ -12,20 +12,20 @@
 
 #include "minishell.h"
 
-void	init_env(t_env **env)
+void	init_env(t_ms *ms, t_env **env)
 {
 	int		i;
 	t_env	*head;
 	t_env	*current;
 
 	i = 0;
-	head = ft_lstnew(ft_strncpy_exp(ENV[i], '='), ft_strlcpy_exp(ENV[i], '='));
+	head = ft_lstnew(ft_strncpy_exp(ms->env_array[i], '='), ft_strlcpy_exp(ms->env_array[i], '='));
 	current = head;
 	i++;
-	while (ENV[i])
+	while (ms->env_array[i])
 	{
-		current->next = ft_lstnew(ft_strncpy_exp(ENV[i], '='),
-			ft_strlcpy_exp(ENV[i], '='));
+		current->next = ft_lstnew(ft_strncpy_exp(ms->env_array[i], '='),
+			ft_strlcpy_exp(ms->env_array[i], '='));
 		current = current->next;
 		i++;
 	}
