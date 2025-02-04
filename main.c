@@ -23,6 +23,11 @@ void	handle_macro(int sig)
 	}
 }
 
+void	handle_sigquit(int sig)
+{
+	(void)sig;
+}
+
 void	init_shell(t_ms *ms)
 {
 	ms->lexer.nb_of_tokens = 0;
@@ -40,6 +45,7 @@ int	main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, ch
 	init_env(&ms, &env);
 	main_interface_print();
 	signal(SIGINT, handle_macro);
+	signal(SIGQUIT, handle_sigquit);
 	while (1)
 	{
 		init_shell(&ms);
