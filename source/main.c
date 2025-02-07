@@ -12,23 +12,21 @@
 
 #include "minishell.h"
 
-void	handle_macro(int sig)
+void	setenv_array(t_ms *ms, char **envp)
 {
-	if (sig == SIGINT)
+	int	x;
+
+	x = 0;
+	ms->env_array = malloc(sizeof(char *) * (ft_lenarray(envp) + 1));
+	while (envp[x])
 	{
-		rl_on_new_line();
-		write(1, "\n", 1);
-		rl_replace_line("", 0);
-		rl_redisplay();
+		ms->env_array[x] = ft_strdup(envp[x]);
+		x++;
 	}
+	ms->env_array[x] = NULL;
 }
 
-void	handle_sigquit(int sig)
-{
-	(void)sig;
-}
-
-void	init_shell(t_ms *ms)
+void	init_infos(t_ms *ms)
 {
 	ms->lexer.nb_of_tokens = 0;
 	ms->lexer.tokens_array = NULL;
@@ -36,19 +34,21 @@ void	init_shell(t_ms *ms)
 	ms->parser.nb_pipe = 0;
 }
 
-int	main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, char **envp)
+int	main(int __attribute__((unused)) argc, char __attribute((unused)) **argv,
+	char **envp)
 {
 	t_ms	ms;
-	t_env	*env;
+	t_env	*env = NULL;
 
-	ms.env_array = envp;
-	init_env(&ms, &env);
-	main_interface_print();
+	setenv_array(&ms, envp);
+	if (envp[0])
+		init_env(&ms, &env);
 	signal(SIGINT, handle_macro);
 	signal(SIGQUIT, handle_sigquit);
+	main_interface_print();
 	while (1)
 	{
-		init_shell(&ms);
+		init_infos(&ms);
 		ms.buffer = readline(YEL"MINISHELL> "ENDCL);
 		if (!ms.buffer)
 			break;
@@ -60,5 +60,6 @@ int	main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, ch
 			print_tester_value(&ms);
 		free_tok(&ms);
 	}
+	free_envarray(&ms);
 	free_env(env);
 }

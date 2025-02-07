@@ -14,6 +14,8 @@
 
 char	*search_var(char *str, t_env *env)
 {
+	if (!env)
+		return (NULL);
 	while (env->next != NULL)
 	{
 		if (ft_strcmp(str, env->name))

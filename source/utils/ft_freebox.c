@@ -27,6 +27,16 @@ void	free_tok(t_ms *ms)
 	ms->lexer.tokens = NULL;
 }
 
+void	free_envarray(t_ms *ms)
+{
+	int	x;
+
+	x = 0;
+	while (ms->env_array[x])
+		free(ms->env_array[x++]);
+	free(ms->env_array);
+}
+
 void	free_env(t_env *env)
 {
 	t_env	*temp;

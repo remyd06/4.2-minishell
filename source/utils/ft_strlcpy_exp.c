@@ -20,6 +20,8 @@ char	*ft_strlcpy_exp(char *str, char c)
 
 	i = 0;
 	y = 0;
+	if (!str)
+		return (0);
 	dest = malloc(sizeof(char) * ft_strllen(str, '=') + 10);
 	while (str[i] != c && str[i])
 		i++;

@@ -147,6 +147,8 @@ void	main_interface_print(void);
 void	print_tester_value(t_ms *ms);
 //Free the int* tokens, and the char** token_array.
 void	free_tok(t_ms *ms);
+//Free the **env_array, copy of **envp.
+void	free_envarray(t_ms *ms);
 //Free the chained list who contained all the ENV values.
 void	free_env(t_env *env);
 //Handle error messages.
@@ -155,7 +157,7 @@ t_bool	ft_error(char *str);
 t_env	*ft_lstnew(char *name, char *arg);
 //Count and return the nb of char up to the specified char.
 int		ft_strnlen(char *str, char c);
-//COunt and return the nb of char form the specified char to the end.
+//Count and return the nb of char form the specified char to the end.
 int		ft_strllen(char *str, char c);
 //Copy the the string up to the specified char. Only for expander function.
 char	*ft_strncpy_exp(char *str, char c);
@@ -169,6 +171,12 @@ char	*ft_strdup(char *str);
 char	*ft_strcpy(char *src, char *dest);
 //Compare two strings and return TRUE if they are the same, or FALSE if not.
 t_bool	ft_strcmp(char *str1, char *str2);
+//Count the nb of char* un a char**.
+int		ft_lenarray(char **array);
+//Handle Ctrl + C.
+void	handle_macro(int sig);
+//Handle Ctrl + \\.
+void	handle_sigquit(int sig);
 
 //Main file.
 int		main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, char **envp);

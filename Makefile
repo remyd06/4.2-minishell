@@ -39,6 +39,7 @@ EXPANDER	=	init_env.c \
 
 SRC_UTILS	=	main_interface_print.c \
 				print_tester_value.c \
+				sigmacros.c \
 				ft_error.c \
 				ft_ismeta.c \
 				ft_isprint.c \
@@ -54,6 +55,7 @@ SRC_UTILS	=	main_interface_print.c \
 				ft_strcmp.c \
 				ft_strcpy.c \
 				ft_freebox.c \
+				ft_lenarray.c \
 				
 SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER} ${PARSER} ${EXPANDER}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}

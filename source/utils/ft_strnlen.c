@@ -17,6 +17,8 @@ int	ft_strnlen(char *str, char c)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i] && str[i] != c)
 		i++;
 	return (i);

@@ -19,6 +19,8 @@ int	ft_strllen(char *str, char c)
 
 	i = 0;
 	y = 0;
+	if (!str)
+		return (0);
 	while (str[i] != c)
 		i++;
 	i++;

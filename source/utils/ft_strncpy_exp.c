@@ -18,6 +18,8 @@ char	*ft_strncpy_exp(char *str, char c)
 	char *dest;
 
 	i = 0;
+	if (!str)
+		return (0);
 	dest = malloc(sizeof(char) * ft_strnlen(str, '=') + 1);
 	while (str[i] != c)
 	{
