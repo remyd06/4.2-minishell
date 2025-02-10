@@ -16,8 +16,8 @@ void	free_tok(t_ms *ms)
 {
 	int	i;
 
-	if (ms->buffer)
-		free(ms->buffer);
+	if (ms->input)
+		free(ms->input);
 	i = 0;
 	while (ms->lexer.tokens_array && ms->lexer.tokens_array[i])
 		free(ms->lexer.tokens_array[i++]);
@@ -29,11 +29,11 @@ void	free_tok(t_ms *ms)
 
 void	free_envarray(t_ms *ms)
 {
-	int	x;
+	int	i;
 
-	x = 0;
-	while (ms->env_array[x])
-		free(ms->env_array[x++]);
+	i = 0;
+	while (ms->env_array[i])
+		free(ms->env_array[i++]);
 	free(ms->env_array);
 }
 

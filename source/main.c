@@ -34,12 +34,31 @@ void	init_infos(t_ms *ms)
 	ms->parser.nb_pipe = 0;
 }
 
+void	main_parsing(t_ms *ms, t_env *env)
+{
+	init_infos(ms);
+	ms->input = readline(YEL"MINISHELL> "ENDCL);
+	if (!ms->input)
+	{
+		free_envarray(ms);
+		free_env(env);
+		exit(0);
+	}
+	if (ms->input && ms->input[0] != ' ')
+		add_history(ms->input);
+	tokenizer(ms);
+	if (parser(ms, env))
+		print_tester_value(ms);
+	free_tok(ms);
+}
+
 int	main(int __attribute__((unused)) argc, char __attribute((unused)) **argv,
 	char **envp)
 {
 	t_ms	ms;
-	t_env	*env = NULL;
+	t_env	*env;
 
+	env = NULL;
 	setenv_array(&ms, envp);
 	if (envp[0])
 		init_env(&ms, &env);
@@ -48,17 +67,7 @@ int	main(int __attribute__((unused)) argc, char __attribute((unused)) **argv,
 	main_interface_print();
 	while (1)
 	{
-		init_infos(&ms);
-		ms.buffer = readline(YEL"MINISHELL> "ENDCL);
-		if (!ms.buffer)
-			break;
-		ms.input = ms.buffer;
-		if (ms.buffer)
-			add_history(ms.buffer);
-		tokenizer(&ms);
-		if (parser(&ms, env))
-			print_tester_value(&ms);
-		free_tok(&ms);
+		main_parsing(&ms, env);
 	}
 	free_envarray(&ms);
 	free_env(env);
