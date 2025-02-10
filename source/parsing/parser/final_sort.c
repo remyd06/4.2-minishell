@@ -62,6 +62,7 @@ void	sort_token(t_ms *ms)
 	temp[j] = END;
 	free(ms->lexer.tokens);
 	ms->lexer.tokens = temp;
+	ms->lexer.nb_of_tokens = j;
 }
 
 void	final_sort(t_ms *ms)
