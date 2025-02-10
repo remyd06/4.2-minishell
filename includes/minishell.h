@@ -90,7 +90,6 @@ typedef struct	s_ms
 	t_lexer		lexer;
 	t_parser	parser;
 	char		*input;
-	char		*buffer;
 	char		**env_array;
 }	t_ms;
 
@@ -119,6 +118,8 @@ t_bool	handle_redir(t_ms *ms);
 void	union_quote(t_ms *ms);
 //Free the old output and write the new one without NA tokens or WSPACE tokens.
 void	final_sort(t_ms *ms);
+//Union all words who are not separated by a WSPACE or NA token.
+void	union_words(t_ms *ms);
 
 /******************************************************************************
  *                              E X P A N D E R                               *
@@ -177,6 +178,8 @@ int		ft_lenarray(char **array);
 void	handle_macro(int sig);
 //Handle Ctrl + \\.
 void	handle_sigquit(int sig);
+//Add at the end of src, add.
+void    ft_strcat(char *src, char *add);
 
 //Main file.
 int		main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, char **envp);
