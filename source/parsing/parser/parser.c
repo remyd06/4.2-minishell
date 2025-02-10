@@ -23,6 +23,7 @@ t_bool	parser(t_ms *ms, t_env *env)
 		return (FALSE);
 	expander(ms, env);
 	union_quote(ms);
+	union_words(ms);
 	final_sort(ms);
 	return (TRUE);
 }

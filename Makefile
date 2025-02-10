@@ -31,6 +31,7 @@ PARSER		=	parser.c \
 				handle_pipes.c \
 				handle_redir.c \
 				union_quote.c \
+				union_words.c \
 				final_sort.c \
 
 EXPANDER	=	init_env.c \
@@ -56,6 +57,7 @@ SRC_UTILS	=	main_interface_print.c \
 				ft_strcpy.c \
 				ft_freebox.c \
 				ft_lenarray.c \
+				ft_strcat.c \
 				
 SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER} ${PARSER} ${EXPANDER}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}
