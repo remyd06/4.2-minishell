@@ -49,7 +49,11 @@ void	main_parsing(t_ms *ms, t_env *env)
 	tokenizer(ms);
 	if (parser(ms, env))
 		print_tester_value(ms);
-	free_tok(ms);
+}
+
+void	main_execution(t_ms *ms, t_env *env)
+{
+	builtins_supervisor(ms, env);
 }
 
 int	main(int __attribute__((unused)) argc, char __attribute((unused)) **argv,
@@ -68,6 +72,8 @@ int	main(int __attribute__((unused)) argc, char __attribute((unused)) **argv,
 	while (1)
 	{
 		main_parsing(&ms, env);
+		main_execution(&ms, env);
+		free_tok(&ms);
 	}
 	free_envarray(&ms);
 	free_env(env);

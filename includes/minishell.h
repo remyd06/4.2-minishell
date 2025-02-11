@@ -128,8 +128,24 @@ void	union_words(t_ms *ms);
 void	init_env(t_ms *ms, t_env **env);
 //Expander module discociated for handle expander in handle_quote function.
 void	expand_var(t_ms *ms, t_env *env, int i);
+//
+char	*search_var(char *str, t_env *env);
 //Main core of the expander for all the input string.
 void	expander(t_ms *ms, t_env *env);
+
+/******************************************************************************
+ *                              B U I L T I N S                               *
+******************************************************************************/
+//
+void    builtins_supervisor(t_ms *ms, t_env *env);
+//
+void    env_func(t_ms *ms);
+//
+void    pwd_func(t_env *env);
+//
+void	echo_func(t_ms *ms);
+//
+void    exit_func(t_ms *ms, t_env *env);
 
 /******************************************************************************
  *                                 U T I L S                                  *

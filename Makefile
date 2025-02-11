@@ -18,10 +18,12 @@ VPATH 		=	source \
 				source/parsing/lexer \
 				source/parsing/parser \
 				source/parsing/expander \
+				source/execution/builtins \
 				source/utils \
 
 SRC			=	main.c \
 
+# Parsing
 LEXER		=	count_token.c \
 				tokenizer.c \
 
@@ -38,6 +40,14 @@ EXPANDER	=	init_env.c \
 				expand_var.c \
 				expander.c \
 
+# Execution
+BUILTINS	=	builtins_supervisor.c \
+				env_func.c \
+				pwd_func.c \
+				echo_func.c \
+				exit_func.c \
+
+# Utils
 SRC_UTILS	=	main_interface_print.c \
 				print_tester_value.c \
 				sigmacros.c \
@@ -59,7 +69,7 @@ SRC_UTILS	=	main_interface_print.c \
 				ft_lenarray.c \
 				ft_strcat.c \
 				
-SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER} ${PARSER} ${EXPANDER}
+SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER} ${PARSER} ${EXPANDER} ${BUILTINS}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}
 
 # Variables
