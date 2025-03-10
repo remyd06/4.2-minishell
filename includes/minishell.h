@@ -67,6 +67,7 @@ typedef	struct s_env
 {
 	char			*name;
 	char			*arg;
+	t_bool			is_egal;
 	struct s_env	*next;
 }	t_env;
 
@@ -196,6 +197,8 @@ void	handle_macro(int sig);
 void	handle_sigquit(int sig);
 //Add at the end of src, add.
 void    ft_strcat(char *src, char *add);
+//
+t_bool  ft_isredir(t_ms *ms, int i);
 
 //Main file.
 int		main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, char **envp);

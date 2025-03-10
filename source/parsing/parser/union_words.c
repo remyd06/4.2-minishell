@@ -40,7 +40,7 @@ void union_words(t_ms *ms)
     i = 0;
     while (i < ms->lexer.nb_of_tokens)
     {
-        if (ms->lexer.tokens[i] != NA && ms->lexer.tokens[i] != WSPACE)
+        if (ms->lexer.tokens[i] != NA && ms->lexer.tokens[i] != WSPACE && (!ft_isredir(ms, i)))
         {
             tmp = malloc(sizeof(char) * (count_len(ms, i) + 1));
             tmp[0] = '\0';
