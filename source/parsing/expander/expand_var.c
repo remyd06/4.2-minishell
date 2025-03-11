@@ -44,3 +44,25 @@ void	expand_var(t_ms *ms, t_env *env, int i)
         ms->lexer.tokens_array[i] = ft_strdup("");
 	}
 }
+
+void	modify_var(char *name, char *new, t_env *env)
+{
+	t_env	*last;
+	if (!env)
+		return ;
+	while (env)
+	{
+		if (ft_strcmp(name, env->name))
+		{
+			free(env->arg);
+			env->arg = malloc((ft_strlen(new) + 1) * sizeof(char));
+			if (env->arg == NULL)
+				return ;
+			ft_strcpy(new, env->arg);
+			return ;
+		}
+		last = env;
+		env = env->next;
+	}
+	last->next = ft_lstnew_design(name, new);
+}
