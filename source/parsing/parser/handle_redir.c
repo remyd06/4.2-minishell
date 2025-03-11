@@ -31,7 +31,8 @@ t_bool	handle_redir(t_ms *ms)
 				i++;
 			if (ms->lexer.tokens[i] != WORD
 				&& ms->lexer.tokens[i] != SINGLE_QUOTE
-				&& ms->lexer.tokens[i] != DOUBLE_QUOTE)
+				&& ms->lexer.tokens[i] != DOUBLE_QUOTE
+				&& ms->lexer.tokens[i] != DOLLAR)
 				return (ft_error("REDIR must be followed by WORD"));
 		}
 		i++;
