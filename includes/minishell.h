@@ -199,6 +199,8 @@ void	handle_sigquit(int sig);
 void    ft_strcat(char *src, char *add);
 //
 t_bool  ft_isredir(t_ms *ms, int i);
+//
+t_bool	ft_strchr(char *str, char c);
 
 //Main file.
 int		main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, char **envp);

@@ -22,7 +22,7 @@ char	*search_var(char *str, t_env *env)
 			return (env->arg);
 		env = env->next;
 	}
-	return (NULL);
+	return ("");
 }
 
 void	expand_var(t_ms *ms, t_env *env, int i)
