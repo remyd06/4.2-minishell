@@ -129,7 +129,7 @@ void	union_words(t_ms *ms);
 void	init_env(t_ms *ms, t_env **env);
 //Expander module discociated for handle expander in handle_quote function.
 void	expand_var(t_ms *ms, t_env *env, int i);
-//
+//Search the var in the env chained list.
 char	*search_var(char *str, t_env *env);
 //Main core of the expander for all the input string.
 void	expander(t_ms *ms, t_env *env);
@@ -197,9 +197,9 @@ void	handle_macro(int sig);
 void	handle_sigquit(int sig);
 //Add at the end of src, add.
 void    ft_strcat(char *src, char *add);
-//
+//Verify if the token is a REDIR or not.
 t_bool  ft_isredir(t_ms *ms, int i);
-//
+//Search c in *str and return TRUE if c is found.
 t_bool	ft_strchr(char *str, char c);
 
 //Main file.
