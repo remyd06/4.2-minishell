@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:57:52 by rdedola           #+#    #+#             */
-/*   Updated: 2025/02/10 18:57:52 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/03/11 17:12:35 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    env_func(t_ms *ms)
+void env_func(t_env *env)
 {
-    int i;
-
-    i = 0;
-    while (ms->env_array[i])
+    while (env)
     {
-        printf("%s\n", ms->env_array[i]);
-        i++;
+        if (env->is_egal)
+            printf("%s=%s\n", env->name, env->arg);
+        else
+            printf("%s\n", env->name);
+        env = env->next;
     }
 }

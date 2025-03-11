@@ -140,7 +140,7 @@ void	expander(t_ms *ms, t_env *env);
 //
 void    builtins_supervisor(t_ms *ms, t_env *env);
 //
-void    env_func(t_ms *ms);
+void	env_func(t_env *env);
 //
 void    pwd_func(t_env *env);
 //
