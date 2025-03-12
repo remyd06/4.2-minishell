@@ -70,6 +70,7 @@ SRC_UTILS	=	main_interface_print.c \
 				ft_strcat.c \
 				ft_isredir.c \
 				ft_strchr.c \
+				ft_ismetatoken.c \
 				
 SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER} ${PARSER} ${EXPANDER} ${BUILTINS}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}

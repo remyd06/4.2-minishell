@@ -201,6 +201,8 @@ void    ft_strcat(char *src, char *add);
 t_bool  ft_isredir(t_ms *ms, int i);
 //Search c in *str and return TRUE if c is found.
 t_bool	ft_strchr(char *str, char c);
+//
+t_bool  ft_ismeatoken(t_ms *ms, int i);
 
 //Main file.
 int		main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, char **envp);
