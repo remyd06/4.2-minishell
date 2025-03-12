@@ -6,7 +6,7 @@
 /*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:57:20 by rdedola           #+#    #+#             */
-/*   Updated: 2025/03/12 09:54:58 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/03/12 11:36:28 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ int     count_len(t_ms *ms, int i)
 void    split_func(t_ms *ms, char *tmp, int *i)
 {
     free(ms->lexer.tokens_array[*i]);
-    ms->lexer.tokens_array[*i++] = ft_strdup(tmp);
+    ms->lexer.tokens_array[*i] = ft_strdup(tmp);
+    if (ft_isprint(ms->lexer.tokens_array[*i][0]))
+        ms->lexer.tokens[*i] = WORD;
 }
 
 void union_words(t_ms *ms)
