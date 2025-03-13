@@ -22,7 +22,7 @@ char	*search_var(char *str, t_env *env)
 			return (env->arg);
 		env = env->next;
 	}
-	return ("");
+	return (NULL);
 }
 
 void	expand_var(t_ms *ms, t_env *env, int i)
@@ -41,7 +41,8 @@ void	expand_var(t_ms *ms, t_env *env, int i)
 	else if (str_env == NULL)
 	{
 		free(ms->lexer.tokens_array[i]);
-        ms->lexer.tokens_array[i] = ft_strdup("");
+        ms->lexer.tokens_array[i] = ft_strdup("\1");
+		ms->lexer.tokens[i] = WORD;
 	}
 }
 
