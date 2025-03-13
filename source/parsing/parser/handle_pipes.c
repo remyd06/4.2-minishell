@@ -27,17 +27,19 @@ t_bool	handle_pipes(t_ms *ms)
 		{
 			is_pipe = TRUE;
 			i++;
+			while (ms->lexer.tokens[i] == WSPACE)
+				i++;
+			if (ms->lexer.tokens[i] != END && (ms->lexer.tokens[i] == WORD ||
+				ms->lexer.tokens[i] == SINGLE_QUOTE ||
+				ms->lexer.tokens[i] == DOUBLE_QUOTE))				
+			{
+				is_pipe = FALSE;
+				i++;
+			}
 		}
-		while (ms->lexer.tokens[i] == WSPACE)
-			i++;
-		if (ms->lexer.tokens[i] != END && ms->lexer.tokens[i] == WORD)
-		{
-			is_pipe = FALSE;
-			i++;
-		}
-		if (is_pipe == TRUE)
-			return (ft_error("PIPE must be surronded by WORD"));
 		i++;
 	}
+	if (is_pipe == TRUE)
+			return (ft_error("PIPE must be surronded by WORD"));
 	return (TRUE);
 }
