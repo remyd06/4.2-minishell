@@ -15,6 +15,7 @@ EXE			=	minishell
 
 # Files
 VPATH 		=	source \
+				source/env \
 				source/parsing/lexer \
 				source/parsing/parser \
 				source/parsing/expander \
@@ -22,6 +23,10 @@ VPATH 		=	source \
 				source/utils \
 
 SRC			=	main.c \
+
+# Environement
+ENV			=	launch_env.c \
+				init_env.c \
 
 # Parsing
 LEXER		=	count_token.c \
@@ -36,8 +41,7 @@ PARSER		=	parser.c \
 				union_words.c \
 				final_sort.c \
 
-EXPANDER	=	init_env.c \
-				expand_var.c \
+EXPANDER	=	expand_var.c \
 				expander.c \
 
 # Execution
@@ -71,8 +75,9 @@ SRC_UTILS	=	main_interface_print.c \
 				ft_isredir.c \
 				ft_strchr.c \
 				ft_ismetatoken.c \
+				ft_strjoin.c \
 				
-SOURCES		=	${SRC} ${SRC_UTILS} ${LEXER} ${PARSER} ${EXPANDER} ${BUILTINS}
+SOURCES		=	${SRC} ${SRC_UTILS} ${ENV} ${LEXER} ${PARSER} ${EXPANDER} ${BUILTINS}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}
 
 # Variables
@@ -88,7 +93,6 @@ COLOR		= \033[1;32m
 all:		${EXE}
 
 ${EXE}:		${OBJECTS}
-			@${CC} ${CFLAGS} ${OBJECTS} -lreadline -o ${EXE}
 			@${CC} ${CFLAGS} ${OBJECTS} -lreadline -o ${EXE}
 			@echo "${COLOR}╔══════════════════════════╗${DEF_COLOR}"
 			@echo "${COLOR}║    Minishell compiled    ║${DEF_COLOR}"

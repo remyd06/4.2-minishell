@@ -92,7 +92,18 @@ typedef struct	s_ms
 	t_parser	parser;
 	char		*input;
 	char		**env_array;
+	t_bool		is_env;
 }	t_ms;
+
+/******************************************************************************
+ *                                   E N V                                    *
+******************************************************************************/
+//
+char	**set_default_env(t_ms *ms, char **envp);
+//Initialize environement in a chained list.
+void	init_env(t_ms *ms, t_env **env);
+//
+void	setenv_array(t_ms *ms, char **envp);
 
 /******************************************************************************
  *                                 L E X E R                                  *
@@ -125,8 +136,6 @@ void	union_words(t_ms *ms);
 /******************************************************************************
  *                              E X P A N D E R                               *
 ******************************************************************************/
-//Initialize environement in a chained list.
-void	init_env(t_ms *ms, t_env **env);
 //Expander module discociated for handle expander in handle_quote function.
 void	expand_var(t_ms *ms, t_env *env, int i);
 //Search the var in the env chained list.
@@ -166,7 +175,7 @@ void	print_tester_value(t_ms *ms);
 //Free the int* tokens, and the char** token_array.
 void	free_tok(t_ms *ms);
 //Free the **env_array, copy of **envp.
-void	free_envarray(t_ms *ms);
+void	free_envarray(t_ms *ms, char **envp);
 //Free the chained list who contained all the ENV values.
 void	free_env(t_env *env);
 //Handle error messages.
@@ -203,6 +212,8 @@ t_bool  ft_isredir(t_ms *ms, int i);
 t_bool	ft_strchr(char *str, char c);
 //
 t_bool  ft_ismeatoken(t_ms *ms, int i);
+//
+char	*ft_strjoin(char *src, char *add);
 
 //Main file.
 int		main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, char **envp);

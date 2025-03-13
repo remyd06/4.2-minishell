@@ -12,20 +12,6 @@
 
 #include "minishell.h"
 
-void	setenv_array(t_ms *ms, char **envp)
-{
-	int	x;
-
-	x = 0;
-	ms->env_array = malloc(sizeof(char *) * (ft_lenarray(envp) + 1));
-	while (envp[x])
-	{
-		ms->env_array[x] = ft_strdup(envp[x]);
-		x++;
-	}
-	ms->env_array[x] = NULL;
-}
-
 void	init_infos(t_ms *ms)
 {
 	ms->lexer.nb_of_tokens = 0;
@@ -34,13 +20,13 @@ void	init_infos(t_ms *ms)
 	ms->parser.nb_pipe = 0;
 }
 
-void	main_parsing(t_ms *ms, t_env *env)
+void	main_parsing(t_ms *ms, t_env *env, char **envp)
 {
 	init_infos(ms);
 	ms->input = readline(YEL"MINISHELL> "ENDCL);
 	if (!ms->input)
 	{
-		free_envarray(ms);
+		free_envarray(ms, envp);
 		free_env(env);
 		exit(0);
 	}
@@ -63,18 +49,20 @@ int	main(int __attribute__((unused)) argc, char __attribute((unused)) **argv,
 	t_env	*env;
 
 	env = NULL;
+	ms.is_env = TRUE;
+	if (!envp[0])
+		envp = set_default_env(&ms, envp);
 	setenv_array(&ms, envp);
-	if (envp[0])
-		init_env(&ms, &env);
+	init_env(&ms, &env);
 	signal(SIGINT, handle_macro);
 	signal(SIGQUIT, handle_sigquit);
 	main_interface_print();
 	while (1)
 	{
-		main_parsing(&ms, env);
+		main_parsing(&ms, env, envp);
 		main_execution(&ms, env);
 		free_tok(&ms);
 	}
-	free_envarray(&ms);
+	free_envarray(&ms, envp);
 	free_env(env);
 }
