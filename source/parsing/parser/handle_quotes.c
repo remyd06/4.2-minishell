@@ -22,10 +22,14 @@ void	convert_single_quotes(t_ms *ms)
 		if (ms->lexer.tokens[i] == SINGLE_QUOTE)
 		{
 			i++;
-			while (ms->lexer.tokens[i] != SINGLE_QUOTE)
+			while (ms->lexer.tokens[i] != SINGLE_QUOTE
+				&& ms->lexer.tokens[i] != END)
 			{
-				ms->lexer.tokens[i] = WORD;
-				i++;
+				if (ms->lexer.tokens[i] != SINGLE_QUOTE)
+				{
+					ms->lexer.tokens[i] = WORD;
+					i++;
+				}
 			}
 		}
 		i++;
@@ -70,16 +74,20 @@ t_bool	handle_quote(t_ms *ms, t_env *env)
 	while (i < ms->lexer.nb_of_tokens)
 	{
 		if (ms->lexer.tokens[i] == SINGLE_QUOTE)
+		{
 			singleq++;
+			convert_single_quotes(ms);
+		}
 		else if (ms->lexer.tokens[i] == DOUBLE_QUOTE)
+		{
 			doubleq++;
+			convert_double_quotes(ms, env);
+		}
 		i++;
 	}
 	if (singleq % 2 == 1)
 		return (ft_error("Invalid single quote."));
 	else if (doubleq % 2 == 1)
-	 	return (ft_error("Invalid double quote."));
-	convert_single_quotes(ms);
-	convert_double_quotes(ms, env);
+		return (ft_error("Invalid double quote."));
 	return (TRUE);
 }
