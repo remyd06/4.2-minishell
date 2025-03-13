@@ -6,7 +6,7 @@
 /*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:01:18 by rdedola           #+#    #+#             */
-/*   Updated: 2025/03/11 17:10:27 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/03/13 13:14:41 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,4 @@ void    builtins_supervisor(t_ms *ms, t_env *env)
         pwd_func(env);
     else if (ft_strcmp(ms->lexer.tokens_array[0], "echo"))
         echo_func(ms);
-    else if (ft_strcmp(ms->lexer.tokens_array[0], "exit"))
-        exit_func(ms, env);
 }

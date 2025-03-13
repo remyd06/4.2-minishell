@@ -1,0 +1,3 @@
+"$toto" ne renvoi pas une chaine vide dans les quotes
+
+"'" "'" = invalid single quote
