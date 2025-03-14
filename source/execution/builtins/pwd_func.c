@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   pwd_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:00:32 by rdedola           #+#    #+#             */
-/*   Updated: 2025/02/10 20:00:32 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/03/14 14:25:58 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    pwd_func(t_env *env)
+void	pwd_func(t_env *env)
 {
-    printf("%s\n", search_var("PWD", env));
+	printf("%s\n", search_var("PWD", env));
 }

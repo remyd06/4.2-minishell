@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:11:27 by rdedola           #+#    #+#             */
-/*   Updated: 2025/02/10 15:11:27 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/03/14 13:49:51 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void    ft_strcat(char *src, char *add)
+void	ft_strcat(char *src, char *add)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    j = 0;
-    while (src[i])
-        i++;
-    while (add[j])
-        src[i++] = add[j++];
-    src[i] = '\0';
+	i = 0;
+	j = 0;
+	while (src[i])
+		i++;
+	while (add[j])
+		src[i++] = add[j++];
+	src[i] = '\0';
 }

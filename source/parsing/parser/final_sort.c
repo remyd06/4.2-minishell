@@ -81,7 +81,8 @@ void	final_sort(t_ms *ms)
 		if (ms->lexer.tokens[i] != WSPACE && ms->lexer.tokens[i] != NA
 			&& ms->lexer.tokens_array[i][0] != '\0')
 		{
-			temp[j] = malloc(sizeof(char) * (ft_strlen(ms->lexer.tokens_array[i]) + 1));
+			temp[j] = malloc(sizeof(char)
+					* (ft_strlen(ms->lexer.tokens_array[i]) + 1));
 			ft_strcpy(ms->lexer.tokens_array[i], temp[j]);
 			j++;
 		}

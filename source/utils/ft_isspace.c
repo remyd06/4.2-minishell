@@ -17,5 +17,4 @@ t_bool	ft_isspace(char c)
 	if ((c >= 9 && c <= 13) || c == ' ')
 		return (TRUE);
 	return (FALSE);
-	
 }

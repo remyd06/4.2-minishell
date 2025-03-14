@@ -15,15 +15,15 @@
 t_bool	parser(t_ms *ms, t_env *env)
 {
 	count_pipe(ms);
-	if (!handle_quote(ms, env))
+	if (!handle_quote(ms, env, 0, 0))
 		return (FALSE);
 	if (!handle_pipes(ms))
 		return (FALSE);
 	if (!handle_redir(ms))
 		return (FALSE);
 	expander(ms, env);
-	union_quote(ms);
-	union_words(ms);
+	union_quote(ms, 0, 0);
+	union_words(ms, 0);
 	final_sort(ms);
 	return (TRUE);
 }

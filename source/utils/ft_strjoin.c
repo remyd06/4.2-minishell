@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:48:01 by rdedola           #+#    #+#             */
-/*   Updated: 2025/03/13 11:48:01 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/03/14 13:52:44 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		countlen(char *src, char *add)
+int	countlen(char *src, char *add)
 {
 	int	i;
 	int	j;
@@ -31,7 +31,7 @@ int		countlen(char *src, char *add)
 
 char	*ft_strjoin(char *src, char *add)
 {
-    int		i;
+	int		i;
 	int		j;
 	int		k;
 	char	*res;

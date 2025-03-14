@@ -14,8 +14,8 @@
 
 char	*ft_strncpy_exp(char *str, char c)
 {
-	int	i;
-	char *dest;
+	int		i;
+	char	*dest;
 
 	i = 0;
 	if (!str)

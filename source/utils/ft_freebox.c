@@ -45,7 +45,6 @@ void	free_envarray(t_ms *ms, char **envp)
 			free (envp[i++]);
 		free(envp);
 	}
-
 }
 
 void	free_env(t_env *env)

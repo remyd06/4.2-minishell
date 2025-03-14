@@ -15,14 +15,14 @@
 
 # include <dirent.h>    		// opendir, readdir, closedir
 # include <fcntl.h>     		// open
-# include <signal.h>    		// signal, sigaction, sigemptyset, sigaddset, kill
+# include <signal.h>    		// signal, sigaction,sigaddset, kill...
 # include <stdio.h>     		// printf, perror
 # include <stdlib.h>    		// malloc, free, exit, getenv
 # include <string.h>    		// strerror
 # include <sys/ioctl.h> 		// ioctl
 # include <sys/stat.h>  		// stat, lstat, fstat
 # include <sys/wait.h>  		// wait, waitpid, wait3, wait4
-# include <term.h>      		// tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
+# include <term.h>      		// tgetent, tgetflag, tgetnum, tgetstr, tgoto...
 # include <termios.h>   		// tcsetattr, tcgetattr
 # include <unistd.h>    		// write, access, read, close, fork
 								// getcwd, chdir, unlink, execve, dup
@@ -40,13 +40,13 @@
 
 # define MAX_OUTPUT_LENGHT 1024
 
-typedef enum	e_bool
+typedef enum e_bool
 {
 	TRUE = 1,
 	FALSE = 0
 }	t_bool;
 
-typedef enum	e_token
+typedef enum e_token
 {
 	WSPACE,				// Whitespace
 	WORD,				// Others
@@ -63,7 +63,7 @@ typedef enum	e_token
 }	t_token;
 
 //ENV chained list.
-typedef	struct s_env
+typedef struct s_env
 {
 	char			*name;
 	char			*arg;
@@ -72,7 +72,7 @@ typedef	struct s_env
 }	t_env;
 
 //Lexer struct.
-typedef struct	s_lexer
+typedef struct s_lexer
 {
 	int			nb_of_tokens;
 	int			*tokens;
@@ -80,13 +80,13 @@ typedef struct	s_lexer
 }	t_lexer;
 
 //Parser struct.
-typedef struct	s_parser
+typedef struct s_parser
 {
 	int			nb_pipe;
 }	t_parser;
 
 //Main struct.
-typedef struct	s_ms 
+typedef struct s_ms
 {
 	t_lexer		lexer;
 	t_parser	parser;
@@ -111,7 +111,7 @@ void	setenv_array(t_ms *ms, char **envp);
 //Count the nb of tokens in the input.
 int		count_token(t_ms *ms);
 //Split and categorize each element of the input in a **array with his token.
-void	tokenizer(t_ms *ms);
+void	tokenizer(t_ms *ms, int x, int y);
 //Count the nb of pipe in the input.
 void	count_pipe(t_ms *ms);
 
@@ -120,18 +120,18 @@ void	count_pipe(t_ms *ms);
 ******************************************************************************/
 //Main file for the parsing.
 t_bool	parser(t_ms *ms, t_env *env);
-//Parse and convert all tokens between "" or '' in a WORD token (except $) for "".
-t_bool	handle_quote(t_ms *ms, t_env *env);
+//Parse and convert all tokens in "" or '' in a WORD token (except $) in "".
+t_bool	handle_quote(t_ms *ms, t_env *env, int singleq, int doubleq);
 //Check if a PIPE is surronded by WORDS.
 t_bool	handle_pipes(t_ms *ms);
 //Check if REDIR is followed by WORD.
 t_bool	handle_redir(t_ms *ms);
 //Join in one token all the string between "" or ''.
-void	union_quote(t_ms *ms);
+void	union_quote(t_ms *ms, int i, int j);
 //Free the old output and write the new one without NA tokens or WSPACE tokens.
 void	final_sort(t_ms *ms);
 //Union all words who are not separated by a WSPACE or NA token.
-void	union_words(t_ms *ms);
+void	union_words(t_ms *ms, int i);
 
 /******************************************************************************
  *                              E X P A N D E R                               *
@@ -147,15 +147,15 @@ void	expander(t_ms *ms, t_env *env);
  *                              B U I L T I N S                               *
 ******************************************************************************/
 //
-void    builtins_supervisor(t_ms *ms, t_env *env);
+void	builtins_supervisor(t_ms *ms, t_env *env);
 //
 void	env_func(t_env *env);
 //
-void    pwd_func(t_env *env);
+void	pwd_func(t_env *env);
 //
 void	echo_func(t_ms *ms);
 //
-void    exit_func(t_ms *ms, t_env *env);
+void	exit_func(t_ms *ms, t_env *env);
 
 /******************************************************************************
  *                                 U T I L S                                  *
@@ -188,7 +188,7 @@ int		ft_strnlen(char *str, char c);
 int		ft_strllen(char *str, char c);
 //Copy the the string up to the specified char. Only for expander function.
 char	*ft_strncpy_exp(char *str, char c);
-//Copy the the string from the specified char to the end. Only for expander function.
+//Copy the the string from the specified char to the end. Only for expander.
 char	*ft_strlcpy_exp(char *src, char c);
 //Count and return the nb of character in a string.
 int		ft_strlen(char *str);
@@ -205,18 +205,18 @@ void	handle_macro(int sig);
 //Handle Ctrl + \\.
 void	handle_sigquit(int sig);
 //Add at the end of src, add.
-void    ft_strcat(char *src, char *add);
+void	ft_strcat(char *src, char *add);
 //Verify if the token is a REDIR or not.
-t_bool  ft_isredir(t_ms *ms, int i);
+t_bool	ft_isredir(t_ms *ms, int i);
 //Search c in *str and return TRUE if c is found.
 t_bool	ft_strchr(char *str, char c);
 //
-t_bool  ft_ismeatoken(t_ms *ms, int i);
+t_bool	ft_ismeatoken(t_ms *ms, int i);
 //
 char	*ft_strjoin(char *src, char *add);
 
 //Main file.
-int		main(int __attribute__((unused)) argc, char __attribute((unused)) **argv, char **envp);
-
+int		main(int __attribute__((unused)) argc,
+			char __attribute((unused)) **argv, char **envp);
 
 #endif

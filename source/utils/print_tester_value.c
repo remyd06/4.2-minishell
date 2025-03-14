@@ -12,9 +12,24 @@
 
 #include "minishell.h"
 
+void	printus(t_ms *ms, int i, const char **tokens)
+{
+	printf(PURP"=============== O U T P U T =============== \n"ENDCL);
+	printf(PURP"INPUT: %s%s\n", ENDCL, ms->input);
+	printf(PURP"NB OF TOKENS: %s%d\n", ENDCL, ms->lexer.nb_of_tokens);
+	while (ms->lexer.tokens_array[i])
+	{
+		printf("String: \"\e[35m%s\e[0m\" Token: \e[35m%s\e[0m\n",
+			ms->lexer.tokens_array[i], tokens[ms->lexer.tokens[i]]);
+		i++;
+	}
+	printf(PURP"=============== P I P E S =============== \n"ENDCL);
+	printf(PURP"NB OF PIPES : %s%d\n", ENDCL, ms->parser.nb_pipe);
+}
+
 void	print_tester_value(t_ms *ms)
 {
-	const char		*tokens[] = {
+	const char	*tokens[] = {
 	[WSPACE] = "Wspace",
 	[WORD] = "Word",
 	[SINGLE_QUOTE] = "Single Quote",
@@ -27,18 +42,8 @@ void	print_tester_value(t_ms *ms)
 	[DOLLAR] = "Dollar",
 	[NA] = "NULL Token",
 	};
-
-	int	i;
+	int			i;
 
 	i = 0;
-	printf(PURP"=============== O U T P U T =============== \n"ENDCL);
-	printf(PURP"INPUT: %s%s\n", ENDCL, ms->input);
-	printf(PURP"NB OF TOKENS: %s%d\n", ENDCL, ms->lexer.nb_of_tokens);
-	while (ms->lexer.tokens_array[i])
-	{
-		printf("String: \"\e[35m%s\e[0m\" Token: \e[35m%s\e[0m\n", ms->lexer.tokens_array[i], tokens[ms->lexer.tokens[i]]);
-		i++;
-	}
-	printf(PURP"=============== P I P E S =============== \n"ENDCL);
-	printf(PURP"NB OF PIPES : %s%d\n", ENDCL, ms->parser.nb_pipe);
+	printus(ms, i, tokens);
 }

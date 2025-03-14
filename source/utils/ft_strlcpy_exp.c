@@ -14,9 +14,9 @@
 
 char	*ft_strlcpy_exp(char *str, char c)
 {
-	int	i;
-	int	y;
-	char *dest;
+	int		i;
+	int		y;
+	char	*dest;
 
 	i = 0;
 	y = 0;

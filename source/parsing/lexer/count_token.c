@@ -12,6 +12,32 @@
 
 #include "minishell.h"
 
+void	super_loop(t_ms *ms, int *i)
+{
+	if ((ms->input[*i] == '>' || ms->input[*i] == '<')
+		&& ms->input[(*i) + 1] == ms->input[*i])
+	{
+		ms->lexer.nb_of_tokens++;
+		(*i) += 2;
+	}
+	else if (ft_ismeta(ms->input[*i]) && !ft_isspace(ms->input[(*i)++]))
+		ms->lexer.nb_of_tokens++;
+	if (ft_isspace(ms->input[*i]))
+	{
+		ms->lexer.nb_of_tokens++;
+		while (ft_isspace(ms->input[*i]))
+			(*i)++;
+	}
+	else if (ft_isprint(ms->input[*i]) && !ft_ismeta(ms->input[*i])
+		&& !ft_isspace(ms->input[*i]))
+	{
+		ms->lexer.nb_of_tokens++;
+		while (ft_isprint(ms->input[*i]) && !ft_ismeta(ms->input[*i])
+			&& !ft_isspace(ms->input[*i]))
+			(*i)++;
+	}
+}
+
 int	count_token(t_ms *ms)
 {
 	int		i;
@@ -20,26 +46,6 @@ int	count_token(t_ms *ms)
 	while (ft_isspace(ms->input[i]))
 		i++;
 	while (ms->input[i])
-	{	
-		if ((ms->input[i] ==  '>' || ms->input[i] == '<') && ms->input[i + 1] == ms->input[i])
-		{
-			ms->lexer.nb_of_tokens++;
-			i += 2;
-		}
-		else if (ft_ismeta(ms->input[i]) && !ft_isspace(ms->input[i++]))
-			ms->lexer.nb_of_tokens++;
-		if (ft_isspace(ms->input[i]))
-		{
-			ms->lexer.nb_of_tokens++;
-			while (ft_isspace(ms->input[i]))
-				i++;
-		}
-		else if (ft_isprint(ms->input[i]) && !ft_ismeta(ms->input[i]) && !ft_isspace(ms->input[i]))
-		{
-			ms->lexer.nb_of_tokens++;
-			while (ft_isprint(ms->input[i]) && !ft_ismeta(ms->input[i]) && !ft_isspace(ms->input[i]))
-				i++;
-		}
-	}
+		super_loop(ms, &i);
 	return (ms->lexer.nb_of_tokens);
 }

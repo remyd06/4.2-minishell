@@ -32,7 +32,7 @@ void	main_parsing(t_ms *ms, t_env *env, char **envp)
 	}
 	if (ms->input && ms->input[0] != ' ')
 		add_history(ms->input);
-	tokenizer(ms);
+	tokenizer(ms, 0, 0);
 	if (parser(ms, env))
 		print_tester_value(ms);
 }

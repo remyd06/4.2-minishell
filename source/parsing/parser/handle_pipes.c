@@ -12,6 +12,25 @@
 
 #include "minishell.h"
 
+void	loop(t_ms *ms, int *i, t_bool *is_pipe)
+{
+	if (ms->lexer.tokens[*i] != END && ms->lexer.tokens[*i] == PIPE)
+	{
+		*is_pipe = TRUE;
+		(*i)++;
+		while (ms->lexer.tokens[*i] == WSPACE)
+			(*i)++;
+		if (ms->lexer.tokens[*i] != END && (ms->lexer.tokens[*i] == WORD
+				|| ms->lexer.tokens[*i] == SINGLE_QUOTE
+				|| ms->lexer.tokens[*i] == DOUBLE_QUOTE))
+		{
+			*is_pipe = FALSE;
+			(*i)++;
+		}
+	}
+	(*i)++;
+}
+
 t_bool	handle_pipes(t_ms *ms)
 {
 	int		i;
@@ -22,24 +41,8 @@ t_bool	handle_pipes(t_ms *ms)
 	if (ms->lexer.tokens[i] == PIPE)
 		return (ft_error("Can't start with a PIPE"));
 	while (i < ms->lexer.nb_of_tokens)
-	{
-		if (ms->lexer.tokens[i] != END && ms->lexer.tokens[i] == PIPE)
-		{
-			is_pipe = TRUE;
-			i++;
-			while (ms->lexer.tokens[i] == WSPACE)
-				i++;
-			if (ms->lexer.tokens[i] != END && (ms->lexer.tokens[i] == WORD ||
-				ms->lexer.tokens[i] == SINGLE_QUOTE ||
-				ms->lexer.tokens[i] == DOUBLE_QUOTE))				
-			{
-				is_pipe = FALSE;
-				i++;
-			}
-		}
-		i++;
-	}
+		loop(ms, &i, &is_pipe);
 	if (is_pipe == TRUE)
-			return (ft_error("PIPE must be surronded by WORD"));
+		return (ft_error("PIPE must be surronded by WORD"));
 	return (TRUE);
 }

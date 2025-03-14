@@ -57,15 +57,11 @@ t_bool	convert_double_quotes(t_ms *ms, t_env *env, int *i)
 	return (FALSE);
 }
 
-t_bool	handle_quote(t_ms *ms, t_env *env)
+t_bool	handle_quote(t_ms *ms, t_env *env, int singleq, int doubleq)
 {
 	int	i;
-	int	singleq;
-	int	doubleq;
 
 	i = 0;
-	singleq = 0;
-	doubleq = 0;
 	while (i < ms->lexer.nb_of_tokens)
 	{
 		if (ms->lexer.tokens[i] == SINGLE_QUOTE)

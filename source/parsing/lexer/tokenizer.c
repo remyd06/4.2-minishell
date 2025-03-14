@@ -53,7 +53,8 @@ void	handle_command(t_ms *ms, int *x, int *y)
 
 	i = 0;
 	ms->lexer.tokens[*y] = WORD;
-	while (ft_isprint(ms->input[*x + i]) && !ft_ismeta(ms->input[*x + i]) && !ft_isspace(ms->input[*x + i]))
+	while (ft_isprint(ms->input[*x + i]) && !ft_ismeta(ms->input[*x + i])
+		&& !ft_isspace(ms->input[*x + i]))
 		i++;
 	ms->lexer.tokens_array[*y] = malloc(sizeof(char) * (i + 1));
 	ft_strncpy(&ms->input[*x], ms->lexer.tokens_array[*y], i);
@@ -67,8 +68,8 @@ void	handle_wspace(t_ms *ms, int *x, int *y)
 
 	i = 0;
 	ms->lexer.tokens[*y] = WSPACE;
-	while (ms->input[*x + i] && ft_isspace(ms->input[*x + i]) &&
-		(!ft_ismeta(ms->input[*x + i]) || !ft_isprint(ms->input[*x + i])))
+	while (ms->input[*x + i] && ft_isspace(ms->input[*x + i])
+		&& (!ft_ismeta(ms->input[*x + i]) || !ft_isprint(ms->input[*x + i])))
 		i++;
 	ms->lexer.tokens_array[*y] = malloc(sizeof(char) * (i + 1));
 	ft_strncpy(&ms->input[*x], ms->lexer.tokens_array[*y], i);
@@ -76,16 +77,12 @@ void	handle_wspace(t_ms *ms, int *x, int *y)
 	(*y)++;
 }
 
-void	tokenizer(t_ms *ms)
+void	tokenizer(t_ms *ms, int x, int y)
 {
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
 	count_token(ms);
 	ms->lexer.tokens = malloc(sizeof(int) * (ms->lexer.nb_of_tokens + 1));
-	ms->lexer.tokens_array = malloc(sizeof(char *) * (ms->lexer.nb_of_tokens + 1));
+	ms->lexer.tokens_array = malloc(sizeof(char *)
+			* (ms->lexer.nb_of_tokens + 1));
 	while (isspace(ms->input[x]))
 		x++;
 	while (ms->input[x])
@@ -93,14 +90,14 @@ void	tokenizer(t_ms *ms)
 		if ((ms->input[x] == '>' || ms->input[x] == '<')
 			&& ms->input[x + 1] == ms->input[x])
 			handle_double_meta(ms, &x, &y);
-		else if (ms->input && ft_ismeta(ms->input[x]) &&
-			(!ft_isprint(ms->input[x]) || !ft_isspace(ms->input[x])))
+		else if (ms->input && ft_ismeta(ms->input[x])
+			&& (!ft_isprint(ms->input[x]) || !ft_isspace(ms->input[x])))
 			handle_meta(ms, &x, &y);
-		else if (ms->input && ft_isspace(ms->input[x]) &&
-			(!ft_isprint(ms->input[x]) || !ft_ismeta(ms->input[x])))
+		else if (ms->input && ft_isspace(ms->input[x])
+			&& (!ft_isprint(ms->input[x]) || !ft_ismeta(ms->input[x])))
 			handle_wspace(ms, &x, &y);
-		else if (ms->input && ft_isprint(ms->input[x]) &&
-			(!ft_ismeta(ms->input[x]) || !ft_isspace(ms->input[x])))
+		else if (ms->input && ft_isprint(ms->input[x])
+			&& (!ft_ismeta(ms->input[x]) || !ft_isspace(ms->input[x])))
 			handle_command(ms, &x, &y);
 	}
 	ms->lexer.tokens_array[y] = NULL;

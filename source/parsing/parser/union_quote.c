@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	end_union(t_ms *ms, char* tmp, int buf_index, int i)
+void	end_union(t_ms *ms, char *tmp, int buf_index, int i)
 {
 	tmp[buf_index] = '\0';
 	ms->lexer.tokens[i--] = NA;
@@ -38,22 +38,21 @@ int	count_lenwords(t_ms *ms, int i)
 	return (res);
 }
 
-void	union_quote(t_ms *ms)
+void	union_quote(t_ms *ms, int i, int j)
 {
-	int		i;
-	int		j;
 	int		buf_index;
 	char	*tmp;
 
-	i = 0;
 	while (i < ms->lexer.nb_of_tokens)
 	{
-		if (ms->lexer.tokens[i] == SINGLE_QUOTE || ms->lexer.tokens[i] == DOUBLE_QUOTE)
+		if (ms->lexer.tokens[i] == SINGLE_QUOTE
+			|| ms->lexer.tokens[i] == DOUBLE_QUOTE)
 		{
 			tmp = malloc(sizeof(char) * (count_lenwords(ms, i + 1) + 1));
 			ms->lexer.tokens[i++] = NA;
 			buf_index = 0;
-			while (i < ms->lexer.nb_of_tokens && ms->lexer.tokens[i] != SINGLE_QUOTE && ms->lexer.tokens[i] != DOUBLE_QUOTE)
+			while (i < ms->lexer.nb_of_tokens && ms->lexer.tokens[i]
+				!= SINGLE_QUOTE && ms->lexer.tokens[i] != DOUBLE_QUOTE)
 			{
 				if (ms->lexer.tokens_array[i][0] != '\1')
 					ms->lexer.tokens[i] = NA;
