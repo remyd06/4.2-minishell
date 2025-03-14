@@ -36,30 +36,25 @@ void	convert_single_quotes(t_ms *ms)
 	}
 }
 
-void	convert_double_quotes(t_ms *ms, t_env *env)
+t_bool	convert_double_quotes(t_ms *ms, t_env *env, int *i)
 {
-	int	i;
-
-	i = 0;
-	while (i < ms->lexer.nb_of_tokens)
+	(*i)++;
+	while (ms->lexer.tokens[*i] != END
+		&& ms->lexer.tokens[*i] != DOUBLE_QUOTE)
 	{
-		if (ms->lexer.tokens[i++] == DOUBLE_QUOTE)
+		if (ms->lexer.tokens[*i] == DOLLAR
+			&& ms->lexer.tokens[(*i) + 1] == WORD)
 		{
-			while (ms->lexer.tokens[i] != END
-				&& ms->lexer.tokens[i] != DOUBLE_QUOTE)
-			{
-				if (ms->lexer.tokens[i] == DOLLAR
-					&& ms->lexer.tokens[i + 1] == WORD)
-				{
-					expand_var(ms, env, ++i);
-					i++;
-				}
-				else
-					ms->lexer.tokens[i++] = WORD;
-			}
+			expand_var(ms, env, ++(*i));
+			(*i)++;
 		}
-		i++;
+		else
+			ms->lexer.tokens[(*i)++] = WORD;
 	}
+	if (ms->lexer.tokens[*i] != END
+		&& ms->lexer.tokens[*i] == DOUBLE_QUOTE)
+		return (TRUE);
+	return (FALSE);
 }
 
 t_bool	handle_quote(t_ms *ms, t_env *env)
@@ -75,16 +70,19 @@ t_bool	handle_quote(t_ms *ms, t_env *env)
 	{
 		if (ms->lexer.tokens[i] == SINGLE_QUOTE)
 		{
-			singleq++;
 			convert_single_quotes(ms);
+			singleq++;
 		}
 		else if (ms->lexer.tokens[i] == DOUBLE_QUOTE)
 		{
-			doubleq++;
-			convert_double_quotes(ms, env);
+			if (convert_double_quotes(ms, env, &i))
+				doubleq += 2;
+			else
+				doubleq++;
 		}
 		i++;
 	}
+	printf("%d\n", doubleq);
 	if (singleq % 2 == 1)
 		return (ft_error("Invalid single quote."));
 	else if (doubleq % 2 == 1)
