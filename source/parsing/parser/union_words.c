@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   union_words.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:57:20 by rdedola           #+#    #+#             */
-/*   Updated: 2025/03/12 11:36:28 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/03/14 13:38:53 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void union_words(t_ms *ms)
                     ft_strcat(tmp, ms->lexer.tokens_array[i]);
                 if (ms->lexer.tokens[i + 1] == WSPACE || ms->lexer.tokens[i + 1] == END)
                     split_func(ms, tmp, &i);
-                else
+                else if (ms->lexer.tokens_array[i][0] != '\1')
                     ms->lexer.tokens[i] = NA;
                 i++;
             }

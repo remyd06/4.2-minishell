@@ -55,7 +55,8 @@ void	union_quote(t_ms *ms)
 			buf_index = 0;
 			while (i < ms->lexer.nb_of_tokens && ms->lexer.tokens[i] != SINGLE_QUOTE && ms->lexer.tokens[i] != DOUBLE_QUOTE)
 			{
-				ms->lexer.tokens[i] = NA;
+				if (ms->lexer.tokens_array[i][0] != '\1')
+					ms->lexer.tokens[i] = NA;
 				j = 0;
 				while (ms->lexer.tokens_array[i][j])
 					tmp[buf_index++] = ms->lexer.tokens_array[i][j++];
