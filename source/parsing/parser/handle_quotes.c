@@ -82,7 +82,6 @@ t_bool	handle_quote(t_ms *ms, t_env *env)
 		}
 		i++;
 	}
-	printf("%d\n", doubleq);
 	if (singleq % 2 == 1)
 		return (ft_error("Invalid single quote."));
 	else if (doubleq % 2 == 1)
