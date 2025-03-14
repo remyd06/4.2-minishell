@@ -23,7 +23,7 @@ void	init_infos(t_ms *ms)
 void	main_parsing(t_ms *ms, t_env *env, char **envp)
 {
 	init_infos(ms);
-	ms->input = readline(YEL"MINISHELL> "ENDCL);
+	ms->input = readline(YEL"MINIS"RED"HELL> "ENDCL);
 	if (!ms->input)
 	{
 		free_envarray(ms, envp);
