@@ -92,9 +92,10 @@ typedef struct s_ms
 {
 	t_lexer		lexer;
 	t_parser	parser;
+	t_bool		is_env;
+	t_bool		is_error;
 	char		*input;
 	char		**env_array;
-	t_bool		is_env;
 }	t_ms;
 
 /******************************************************************************

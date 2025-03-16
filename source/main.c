@@ -19,6 +19,7 @@ void	init_infos(t_ms *ms)
 	ms->lexer.tokens_array = NULL;
 	ms->lexer.tokens = NULL;
 	ms->parser.nb_pipe = 0;
+	ms->is_error = FALSE;
 }
 
 void	main_parsing(t_ms *ms, t_env *env, char **envp)
@@ -36,6 +37,8 @@ void	main_parsing(t_ms *ms, t_env *env, char **envp)
 	tokenizer(ms, 0, 0);
 	if (parser(ms, env))
 		print_tester_value(ms);
+	else
+		ms->is_error = TRUE;
 }
 
 void	main_execution(t_ms *ms, t_env *env)
