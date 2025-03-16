@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+int	g_exit_status = 0;
 
 void	init_infos(t_ms *ms)
 {

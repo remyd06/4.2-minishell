@@ -20,6 +20,12 @@ void	expander(t_ms *ms, t_env *env)
 	while (i < ms->lexer.nb_of_tokens)
 	{
 		if (ms->lexer.tokens[i] == DOLLAR
+			&& ft_strcmp(ms->lexer.tokens_array[i + 1], "?"))
+		{
+			expand_retvar(ms, ++i);
+			i++;
+		}
+		else if (ms->lexer.tokens[i] == DOLLAR
 			&& ms->lexer.tokens[i + 1] == WORD)
 		{
 			expand_var(ms, env, ++i);

@@ -43,6 +43,12 @@ t_bool	convert_double_quotes(t_ms *ms, t_env *env, int *i)
 		&& ms->lexer.tokens[*i] != DOUBLE_QUOTE)
 	{
 		if (ms->lexer.tokens[*i] == DOLLAR
+			&& ft_strcmp(ms->lexer.tokens_array[(*i) + 1], "?"))
+		{
+			expand_retvar(ms, ++(*i));
+			(*i)++;
+		}
+		else if (ms->lexer.tokens[*i] == DOLLAR
 			&& ms->lexer.tokens[(*i) + 1] == WORD)
 		{
 			expand_var(ms, env, ++(*i));
