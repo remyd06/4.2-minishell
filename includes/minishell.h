@@ -40,6 +40,8 @@
 
 # define MAX_OUTPUT_LENGHT 1024
 
+extern int	g_exit_status;
+
 typedef enum e_bool
 {
 	TRUE = 1,
@@ -138,6 +140,8 @@ void	union_words(t_ms *ms, int i);
 ******************************************************************************/
 //Expander module discociated for handle expander in handle_quote function.
 void	expand_var(t_ms *ms, t_env *env, int i);
+//Expander module for the $? var.
+void	expand_retvar(t_ms *ms, int i);
 //Search the var in the env chained list.
 char	*search_var(char *str, t_env *env);
 //Main core of the expander for all the input string.
@@ -146,7 +150,7 @@ void	expander(t_ms *ms, t_env *env);
 /******************************************************************************
  *                              B U I L T I N S                               *
 ******************************************************************************/
-//
+//Supervisor for all the builtins.
 void	builtins_supervisor(t_ms *ms, t_env *env);
 //
 void	env_func(t_env *env);
@@ -163,7 +167,7 @@ void	exit_func(t_ms *ms, t_env *env);
 //Check if the accurate char is a meta char.
 t_bool	ft_ismeta(char c);
 //Check if the accurate char is a printable char.
-t_bool	ft_isprint(int c);
+t_bool	ft_risprint(int c);
 //Check if the accurate char is a space char.
 t_bool	ft_isspace(char c);
 //Copy the *src in the *dest of x size.
@@ -181,7 +185,7 @@ void	free_env(t_env *env);
 //Handle error messages.
 t_bool	ft_error(char *str);
 //Create a new chained list.
-t_env	*ft_lstnew(char *name, char *arg);
+t_env	*ft_rlstnew(char *name, char *arg);
 //Count and return the nb of char up to the specified char.
 int		ft_strnlen(char *str, char c);
 //Count and return the nb of char form the specified char to the end.
@@ -191,9 +195,9 @@ char	*ft_strncpy_exp(char *str, char c);
 //Copy the the string from the specified char to the end. Only for expander.
 char	*ft_strlcpy_exp(char *src, char c);
 //Count and return the nb of character in a string.
-int		ft_strlen(char *str);
+int		ft_rstrlen(char *str);
 //Duplicate with malloc a string.
-char	*ft_strdup(char *str);
+char	*ft_rstrdup(char *str);
 //Copy the src string in the dest string.
 char	*ft_strcpy(char *src, char *dest);
 //Compare two strings and return TRUE if they are the same, or FALSE if not.
@@ -209,11 +213,15 @@ void	ft_strcat(char *src, char *add);
 //Verify if the token is a REDIR or not.
 t_bool	ft_isredir(t_ms *ms, int i);
 //Search c in *str and return TRUE if c is found.
-t_bool	ft_strchr(char *str, char c);
+t_bool	ft_rstrchr(char *str, char c);
 //
 t_bool	ft_ismeatoken(t_ms *ms, int i);
 //
-char	*ft_strjoin(char *src, char *add);
+char	*ft_rstrjoin(char *src, char *add);
+//
+t_bool	ft_risdigit(char *str);
+//
+char	*ft_ritoa(int n);
 
 //Main file.
 int		main(int __attribute__((unused)) argc,

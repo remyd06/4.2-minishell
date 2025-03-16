@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   union_words.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdedola <rdedola@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:57:20 by rdedola           #+#    #+#             */
-/*   Updated: 2025/03/14 14:29:36 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/03/16 21:08:29 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_len(t_ms *ms, int i)
 		&& ms->lexer.tokens[i] != WSPACE)
 	{
 		if (ms->lexer.tokens[i] != NA)
-			len += ft_strlen(ms->lexer.tokens_array[i]);
+			len += ft_rstrlen(ms->lexer.tokens_array[i]);
 		i++;
 	}
 	return (len);
@@ -30,8 +30,8 @@ int	count_len(t_ms *ms, int i)
 void	split_func(t_ms *ms, char *tmp, int *i)
 {
 	free(ms->lexer.tokens_array[*i]);
-	ms->lexer.tokens_array[*i] = ft_strdup(tmp);
-	if (ft_isprint(ms->lexer.tokens_array[*i][0]))
+	ms->lexer.tokens_array[*i] = ft_rstrdup(tmp);
+	if (ft_risprint(ms->lexer.tokens_array[*i][0]))
 		ms->lexer.tokens[*i] = WORD;
 }
 

@@ -28,11 +28,11 @@ void	super_loop(t_ms *ms, int *i)
 		while (ft_isspace(ms->input[*i]))
 			(*i)++;
 	}
-	else if (ft_isprint(ms->input[*i]) && !ft_ismeta(ms->input[*i])
+	else if (ft_risprint(ms->input[*i]) && !ft_ismeta(ms->input[*i])
 		&& !ft_isspace(ms->input[*i]))
 	{
 		ms->lexer.nb_of_tokens++;
-		while (ft_isprint(ms->input[*i]) && !ft_ismeta(ms->input[*i])
+		while (ft_risprint(ms->input[*i]) && !ft_ismeta(ms->input[*i])
 			&& !ft_isspace(ms->input[*i]))
 			(*i)++;
 	}

@@ -18,7 +18,7 @@ void	end_union(t_ms *ms, char *tmp, int buf_index, int i)
 	ms->lexer.tokens[i--] = NA;
 	ms->lexer.tokens[i] = WORD;
 	free(ms->lexer.tokens_array[i]);
-	ms->lexer.tokens_array[i] = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
+	ms->lexer.tokens_array[i] = malloc(sizeof(char) * (ft_rstrlen(tmp) + 1));
 	strcpy(ms->lexer.tokens_array[i], tmp);
 	free(tmp);
 }
@@ -32,7 +32,7 @@ int	count_lenwords(t_ms *ms, int i)
 		&& ms->lexer.tokens[i] != DOUBLE_QUOTE)
 	{
 		if (ms->lexer.tokens_array[i] != NULL)
-			res += ft_strlen(ms->lexer.tokens_array[i]);
+			res += ft_rstrlen(ms->lexer.tokens_array[i]);
 		i++;
 	}
 	return (res);

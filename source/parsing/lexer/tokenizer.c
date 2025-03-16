@@ -53,7 +53,7 @@ void	handle_command(t_ms *ms, int *x, int *y)
 
 	i = 0;
 	ms->lexer.tokens[*y] = WORD;
-	while (ft_isprint(ms->input[*x + i]) && !ft_ismeta(ms->input[*x + i])
+	while (ft_risprint(ms->input[*x + i]) && !ft_ismeta(ms->input[*x + i])
 		&& !ft_isspace(ms->input[*x + i]))
 		i++;
 	ms->lexer.tokens_array[*y] = malloc(sizeof(char) * (i + 1));
@@ -69,7 +69,7 @@ void	handle_wspace(t_ms *ms, int *x, int *y)
 	i = 0;
 	ms->lexer.tokens[*y] = WSPACE;
 	while (ms->input[*x + i] && ft_isspace(ms->input[*x + i])
-		&& (!ft_ismeta(ms->input[*x + i]) || !ft_isprint(ms->input[*x + i])))
+		&& (!ft_ismeta(ms->input[*x + i]) || !ft_risprint(ms->input[*x + i])))
 		i++;
 	ms->lexer.tokens_array[*y] = malloc(sizeof(char) * (i + 1));
 	ft_strncpy(&ms->input[*x], ms->lexer.tokens_array[*y], i);
@@ -91,12 +91,12 @@ void	tokenizer(t_ms *ms, int x, int y)
 			&& ms->input[x + 1] == ms->input[x])
 			handle_double_meta(ms, &x, &y);
 		else if (ms->input && ft_ismeta(ms->input[x])
-			&& (!ft_isprint(ms->input[x]) || !ft_isspace(ms->input[x])))
+			&& (!ft_risprint(ms->input[x]) || !ft_isspace(ms->input[x])))
 			handle_meta(ms, &x, &y);
 		else if (ms->input && ft_isspace(ms->input[x])
-			&& (!ft_isprint(ms->input[x]) || !ft_ismeta(ms->input[x])))
+			&& (!ft_risprint(ms->input[x]) || !ft_ismeta(ms->input[x])))
 			handle_wspace(ms, &x, &y);
-		else if (ms->input && ft_isprint(ms->input[x])
+		else if (ms->input && ft_risprint(ms->input[x])
 			&& (!ft_ismeta(ms->input[x]) || !ft_isspace(ms->input[x])))
 			handle_command(ms, &x, &y);
 	}

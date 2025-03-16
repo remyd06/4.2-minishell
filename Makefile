@@ -57,25 +57,27 @@ SRC_UTILS	=	main_interface_print.c \
 				sigmacros.c \
 				ft_error.c \
 				ft_ismeta.c \
-				ft_isprint.c \
+				ft_risprint.c \
 				ft_isspace.c \
 				ft_strncpy.c \
 				ft_strncpy_exp.c \
 				ft_strlcpy_exp.c \
-				ft_lstnew.c \
+				ft_rlstnew.c \
 				ft_strnlen.c \
 				ft_strllen.c \
-				ft_strlen.c \
-				ft_strdup.c \
+				ft_rstrlen.c \
+				ft_rstrdup.c \
 				ft_strcmp.c \
 				ft_strcpy.c \
 				ft_freebox.c \
 				ft_lenarray.c \
 				ft_strcat.c \
 				ft_isredir.c \
-				ft_strchr.c \
+				ft_rstrchr.c \
 				ft_ismetatoken.c \
-				ft_strjoin.c \
+				ft_rstrjoin.c \
+				ft_risdigit.c \
+				ft_ritoa.c \
 				
 SOURCES		=	${SRC} ${SRC_UTILS} ${ENV} ${LEXER} ${PARSER} ${EXPANDER} ${BUILTINS}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}

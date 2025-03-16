@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_rstrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 11:54:32 by rdedola           #+#    #+#             */
-/*   Updated: 2025/03/13 12:51:27 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/03/16 21:06:59 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_bool	ft_strchr(char *str, char c)
+t_bool	ft_rstrchr(char *str, char c)
 {
 	int	i;
 
