@@ -1,0 +1,22 @@
+Nico:
+[ ] revoir gestion des flags
+[V] prendre en charge le basename
+[ ] gestion de exit_status pour les binaire (waitpid) ---> wait_status
+[ ] gerer les leaks
+[V] verifier que la commande est bien executable (allege get_path)
+
+Remy:
+[ ] changer msg d'erreur de syntaxe a essayer dans bash
+   exemple : bash$ echo a >>> salut
+   le bash -> bash: erreur de syntaxe près du symbole inattendu « > »
+   nous -> ERROR: REDIR must be followed by WORD
+
+[ ]  avec  isatty(STDIN_FILENO)
+verif avant le read du parse si STDIN, STDOUT, STDERR sont valide
+
+
+Autre:
+[ ] norminette
+[ ] changer msg d'erreur de syntaxe (anglais)
+[ ] eviter le plus possible les printf
+[ ] mettre les messages d'erreur sur STDERR (pas STDOUT)
