@@ -78,6 +78,7 @@ SRC_UTILS	=	main_interface_print.c \
 				ft_rstrjoin.c \
 				ft_risdigit.c \
 				ft_ritoa.c \
+				ft_check_fd.c \
 				
 SOURCES		=	${SRC} ${SRC_UTILS} ${ENV} ${LEXER} ${PARSER} ${EXPANDER} ${BUILTINS}
 OBJECTS		=	${SOURCES:%.c=obj/%.o}

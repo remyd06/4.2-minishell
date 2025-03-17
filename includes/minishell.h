@@ -223,6 +223,8 @@ char	*ft_rstrjoin(char *src, char *add);
 t_bool	ft_risdigit(char *str);
 //
 char	*ft_ritoa(int n);
+//
+void	ft_check_fd(int fd);
 
 //Main file.
 int		main(int __attribute__((unused)) argc,

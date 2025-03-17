@@ -52,6 +52,7 @@ int	main(int __attribute__((unused)) argc, char __attribute((unused)) **argv,
 	t_ms	ms;
 	t_env	*env;
 
+	ft_check_fd(void);
 	env = NULL;
 	ms.is_env = TRUE;
 	if (!envp[0])
