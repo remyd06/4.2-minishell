@@ -6,7 +6,7 @@
 /*   By: rdedola <rdedola@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:19:25 by rdedola           #+#    #+#             */
-/*   Updated: 2025/03/16 21:05:51 by rdedola          ###   ########.fr       */
+/*   Updated: 2025/03/17 15:25:11 by rdedola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,10 @@ char	**set_default_env(t_ms *ms, char **envp)
 
 	pwd = getcwd(NULL, 0);
 	ms->is_env = FALSE;
-	envp = malloc(sizeof(char *) * 5);
+	envp = malloc(sizeof(char *) * 4);
 	envp[0] = ft_rstrdup("SHLVL=1");
 	envp[1] = ft_rstrjoin("PWD=", pwd);
-	envp[2] = ft_rstrdup("TERM=xterm-256color");
-	envp[3] = ft_rstrdup("_=/usr/bin/env");
-	envp[4] = NULL;
+	envp[2] = NULL;
 	free(pwd);
 	return (envp);
 }
